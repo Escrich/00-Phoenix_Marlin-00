@@ -1264,7 +1264,7 @@
 #define MICROSTEP_MODES    \
   {                        \
     16, 16, 8, 8, 16, 16 \
-  } // [1,2,4,8,16]  --------------------- Phoenix, chequear
+  } // [1,2,4,8,16]  --------------------- Phoenix, chequear 
 
 /**
  *  @section  stepper motor current
@@ -2845,6 +2845,8 @@
 #if HAS_TRINAMIC_CONFIG
 
 #define HOLD_MULTIPLIER 0.5 // Scales down the holding current from run current
+
+#define DIAG_JUMPERS_REMOVED // Just to remove warning, Phoenix is not using sensorless at all
 
 /**
  * Interpolate microsteps to 256
