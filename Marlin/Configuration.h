@@ -1,5 +1,5 @@
 /**
- * Escrich Phoenix 20221109
+ * Escrich Phoenix 20221109 downstairs
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
@@ -549,7 +549,7 @@
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  *
  */
-#define TEMP_SENSOR_0 998 //5 // Before it was 504 -----------------------------------Dummy values return to good ones
+#define TEMP_SENSOR_0 998 // 5 // Before it was 504 -----------------------------------Dummy values return to good ones
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -557,7 +557,7 @@
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
-#define TEMP_SENSOR_BED 998 //1 // Before it was 505 -----------------------------------Dummy values return to good ones
+#define TEMP_SENSOR_BED 998 // 1 // Before it was 505 -----------------------------------Dummy values return to good ones
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 #define TEMP_SENSOR_COOLER 0
@@ -851,8 +851,8 @@
 #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
                                 // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
-#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of flash)
-#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of flash)
+#define PID_EDIT_MENU     // Add PID editing to the "Advanced Settings" menu. (~700 bytes of flash)
+#define PID_AUTOTUNE_MENU // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of flash)
 #endif
 
 // @section safety
@@ -1151,9 +1151,9 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
-#define X_MIN_ENDSTOP_INVERTING true       // Set to true to invert the logic of the endstop.
-#define Y_MIN_ENDSTOP_INVERTING true       // Set to true to invert the logic of the endstop.
-#define Z_MIN_ENDSTOP_INVERTING true       // Set to true to invert the logic of the endstop.
+#define X_MIN_ENDSTOP_INVERTING true        // Set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true        // Set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING true        // Set to true to invert the logic of the endstop.
 #define I_MIN_ENDSTOP_INVERTING false       // Set to true to invert the logic of the endstop.
 #define J_MIN_ENDSTOP_INVERTING false       // Set to true to invert the logic of the endstop.
 #define K_MIN_ENDSTOP_INVERTING false       // Set to true to invert the logic of the endstop.
@@ -1217,10 +1217,12 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT \
-  {                                 \
-    79.82249512, 79.88339666, 1593.713222, 94.75                \
-  } // ------------------------ Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95
+#define DEFAULT_AXIS_STEPS_PER_UNIT             \
+  {                                             \
+    79.82249512, 79.88339666, 796.856611, 94.75 \
+  }
+// Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
+// Valores para un husillo de dos milimetros de avance en lugar de 8, solo 8 micropasos, en lugar de 16
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1279,7 +1281,7 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-#define CLASSIC_JERK
+//#define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
 #define DEFAULT_XJERK 8   // 10.0
 #define DEFAULT_YJERK 8   // 10.0
@@ -1666,7 +1668,7 @@
  * A total of 3 or more adds more slow probes, taking the average.
  */
 #define MULTIPLE_PROBING 2
-#define EXTRA_PROBING    1
+#define EXTRA_PROBING 1
 
 /**
  * Z probes require clearance when deploying, stowing, and moving between
@@ -1877,7 +1879,7 @@
 #endif
 
 #if EITHER(MIN_SOFTWARE_ENDSTOPS, MAX_SOFTWARE_ENDSTOPS)
-#define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
+#define SOFT_ENDSTOPS_MENU_ITEM // Enable/Disable software endstops from the LCD
 #endif
 
 /**
@@ -2140,7 +2142,7 @@
 #if ENABLED(LCD_BED_LEVELING)
 #define MESH_EDIT_Z_STEP 0.025 // (mm) Step size while manually probing Z axis.
 #define LCD_PROBE_Z_RANGE 4    // (mm) Z Range centered on Z_MIN_POS for LCD Z adjustment
-#define MESH_EDIT_MENU        // Add a menu to edit mesh points
+#define MESH_EDIT_MENU         // Add a menu to edit mesh points
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
@@ -2149,11 +2151,11 @@
 #if ENABLED(LCD_BED_TRAMMING)
 #define BED_TRAMMING_INSET_LFRB \
   {                             \
-    40, 40, 40, 40                \
-  }                             // (mm) Left, Front, Right, Back insets
-#define BED_TRAMMING_HEIGHT 0.0 // (mm) Z height of nozzle at leveling points
-#define BED_TRAMMING_Z_HOP 10.0  // (mm) Z height of nozzle between leveling points
-#define BED_TRAMMING_INCLUDE_CENTER       // Move to the center after the last corner
+    40, 40, 40, 40              \
+  }                                 // (mm) Left, Front, Right, Back insets
+#define BED_TRAMMING_HEIGHT 0.0     // (mm) Z height of nozzle at leveling points
+#define BED_TRAMMING_Z_HOP 10.0     // (mm) Z height of nozzle between leveling points
+#define BED_TRAMMING_INCLUDE_CENTER // Move to the center after the last corner
 #define BED_TRAMMING_USE_PROBE
 #if ENABLED(BED_TRAMMING_USE_PROBE)
 #define BED_TRAMMING_PROBE_TOLERANCE 0.1 // (mm)
@@ -2190,7 +2192,6 @@
  */
 //#define Z_PROBE_END_SCRIPT "G1 Z10 F12000\nG1 X15 Y330\nG1 Z0.5\nG1 Z10"
 #define Z_PROBE_END_SCRIPT "G1 F4000\nG1 X110 Y110" //  -------------------- Mi versión, dejar la cama centrada despues del homing, perfecto!
-
 
 // @section homing
 
@@ -2304,13 +2305,13 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+#define EEPROM_SETTINGS // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of flash. Disable for release!
 #define EEPROM_CHITCHAT    // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #define EEPROM_BOOT_SILENT // Keep M503 quiet and only give errors during first load
 #if ENABLED(EEPROM_SETTINGS)
-#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
-#define EEPROM_INIT_NOW   // Init EEPROM on first boot after a new build.
+#define EEPROM_AUTO_INIT // Init EEPROM automatically on any errors.
+#define EEPROM_INIT_NOW  // Init EEPROM on first boot after a new build.
 #endif
 
 // @section host
@@ -2384,12 +2385,12 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
 // Specify a park position as { X, Y, Z_raise }
-#define NOZZLE_PARK_POINT                  \
-  {                                        \
+#define NOZZLE_PARK_POINT                \
+  {                                      \
     (X_MAX_POS - 5), (Y_MIN_POS + 1), 50 \
-  } // Originally (X_MIN_POS + 10), (Y_MAX_POS - 10), 20
+  }                                 // Originally (X_MIN_POS + 10), (Y_MAX_POS - 10), 20
 #define NOZZLE_PARK_MOVE 0          // Park motion: 0 = XY Move, 1 = X Only, 2 = Y Only, 3 = X before Y, 4 = Y before X
-#define NOZZLE_PARK_Z_RAISE_MIN 10   // (mm) Always raise Z by at least this distance
+#define NOZZLE_PARK_Z_RAISE_MIN 10  // (mm) Always raise Z by at least this distance
 #define NOZZLE_PARK_XY_FEEDRATE 100 // (mm/s) X and Y axes feedrate (also used for delta Z axis)
 #define NOZZLE_PARK_Z_FEEDRATE 5    // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
@@ -2715,7 +2716,7 @@
 //  M300 S<frequency Hz> P<duration ms>
 //
 #define LCD_FEEDBACK_FREQUENCY_DURATION_MS 20 // It was 2
-#define LCD_FEEDBACK_FREQUENCY_HZ  1000 // 5000
+#define LCD_FEEDBACK_FREQUENCY_HZ 1000        // 5000
 
 //=============================================================================
 //======================== LCD / Controller Selection =========================

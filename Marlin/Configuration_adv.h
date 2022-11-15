@@ -1,5 +1,5 @@
 /**
- * Escrich Phoenix 20221110 msi
+ * Escrich Phoenix 20221115
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
@@ -1263,8 +1263,8 @@
 // Microstep settings (Requires a board with pins named X_MS1, X_MS2, etc.)
 #define MICROSTEP_MODES    \
   {                        \
-    16, 16, 16, 16, 16, 16 \
-  } // [1,2,4,8,16]  --------------------- Phoenix, chequear
+    16, 16, 8, 8, 16, 16 \
+  } // [1,2,4,8,16]  --------------------- Phoenix, chequear 
 
 /**
  *  @section  stepper motor current
@@ -1664,7 +1664,7 @@
 //#define USE_UHS2_USB
 //#define USE_UHS3_USB
 
-#define DISABLE_DUE_SD_MMC // Disable USB Host access to USB Drive to prevent hangs on block access for DUE platform
+//#define DISABLE_DUE_SD_MMC // Disable USB Host access to USB Drive to prevent hangs on block access for DUE platform
 
 /**
  * Native USB Host supported by some boards (USB OTG)
@@ -2846,6 +2846,8 @@
 
 #define HOLD_MULTIPLIER 0.5 // Scales down the holding current from run current
 
+#define DIAG_JUMPERS_REMOVED // Just to remove warning, Phoenix is not using sensorless at all
+
 /**
  * Interpolate microsteps to 256
  * Override for each driver with <driver>_INTERPOLATE settings below
@@ -2895,7 +2897,7 @@
 #if AXIS_IS_TMC(Z)
 #define Z_CURRENT 420
 #define Z_CURRENT_HOME Z_CURRENT
-#define Z_MICROSTEPS 16
+#define Z_MICROSTEPS 8  // was 16 before
 #define Z_RSENSE 0.11
 #define Z_CHAIN_POS -1
 //#define Z_INTERPOLATE  true
