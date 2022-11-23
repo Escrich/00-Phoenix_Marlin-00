@@ -1,5 +1,5 @@
 /**
- * Escrich Phoenix 20221115
+ * Escrich Phoenix 20221122 Phoenix on Octopus
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
@@ -557,7 +557,7 @@
 #define TEMP_SENSOR_5 0
 #define TEMP_SENSOR_6 0
 #define TEMP_SENSOR_7 0
-#define TEMP_SENSOR_BED 998 // 1 // Before it was 505 -----------------------------------Dummy values return to good ones
+#define TEMP_SENSOR_BED 1 // Before it was 505 -------------------------------- 998 Dummy values returned to good ones
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0
 #define TEMP_SENSOR_COOLER 0
@@ -792,10 +792,10 @@
 
 // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-// Valores definidos por mi para mi Phoenix  -- Escrich, Real ones ------------- 20221103
-#define DEFAULT_bedKp 55.77
-#define DEFAULT_bedKi 10.10
-#define DEFAULT_bedKd 205.22
+// Valores definidos por mi para mi Phoenix  -- Escrich, Real ones ------------- 20221123
+#define DEFAULT_bedKp 72.2
+#define DEFAULT_bedKi 13.27
+#define DEFAULT_bedKd 261.8
 
 // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -1217,12 +1217,14 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT             \
-  {                                             \
-    79.82249512, 79.88339666, 796.856611, 94.75 \
+#define DEFAULT_AXIS_STEPS_PER_UNIT            \
+  {                                            \
+    79.82249512, 98.7281815, 398.4283055, 690 \
   }
 // Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
 // Valores para un husillo de dos milimetros de avance en lugar de 8, solo 8 micropasos, en lugar de 16
+// 79.82249512, 79.88339666, 398.4283055, 94.75
+// 690 pasos, configuracion para extrusora orbiter
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1231,7 +1233,7 @@
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    300, 300, 9, 180         \
+    300, 300, 12, 180        \
   } // Ajustadas conforme a Hypothetic  ////////--------------- Atención 50% mas de velocidad en Phoenix-------- antes 200, 200, 12, 120 ----------------
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -1722,7 +1724,7 @@
 //#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
 // Require minimum nozzle and/or bed temperature for probing
-#define PREHEAT_BEFORE_PROBING //  ----------- Desactivado por el momento, Ya activado, solo se desactiva para pruebas, Phoenix -----------------
+//#define PREHEAT_BEFORE_PROBING //  ----------- Desactivado por el momento, Ya activado, solo se desactiva para pruebas, Phoenix -----------------
 #if ENABLED(PREHEAT_BEFORE_PROBING)
 #define PROBING_NOZZLE_TEMP 190 // (°C) Only applies to E0 at this time
 #define PROBING_BED_TEMP 60
@@ -1766,7 +1768,7 @@
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false // phoenix, sin ajustar aun
 #define INVERT_Y_DIR true
-#define INVERT_Z_DIR false
+#define INVERT_Z_DIR true // True on Phoenix para motores de 600 mA
 //#define INVERT_I_DIR false
 //#define INVERT_J_DIR false
 //#define INVERT_K_DIR false
@@ -1822,12 +1824,12 @@
 #define Y_BED_SIZE 220
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
-#define X_MIN_POS -2 //  ------------------- Medidos en maquina cabezal rojo de pruebas ----------------------
-#define Y_MIN_POS -3
+#define X_MIN_POS -3 //  -------------------------- Medidos en maquina tras reforma ----------------------
+#define Y_MIN_POS -65
 #define Z_MIN_POS 0
-#define X_MAX_POS (X_BED_SIZE + 15) // ------------ Limite total de X Phoenix antes de la reforma, añadiendo 15 mm. de margen a la derecha
-#define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS (250 + 8) // -------------- Añadiendo 8 mm de altura para implementar sistema de paralelo de brazos, limite fisico a 250 + 7 mm
+#define X_MAX_POS (X_BED_SIZE + 8)  // ------------ Limite total de X Phoenix despues de la reforma, añadiendo 8 mm. de margen a la derecha
+#define Y_MAX_POS (Y_BED_SIZE + 15) // ------------ Limite total de Y Phoenix despues de la reforma, añadiendo 15 mm. de margen al frente
+#define Z_MAX_POS (250 + 8)         // ------------ Max Z, no definido aun 20221123 
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
 //#define J_MIN_POS 0
@@ -2367,6 +2369,11 @@
 #define PREHEAT_5_TEMP_HOTEND 220
 #define PREHEAT_5_TEMP_BED 110
 #define PREHEAT_5_FAN_SPEED 255 // Value from 0 to 255
+
+#define PREHEAT_6_LABEL "Boquilla"
+#define PREHEAT_6_TEMP_HOTEND 250
+#define PREHEAT_6_TEMP_BED 25
+#define PREHEAT_6_FAN_SPEED 255 // Value from 0 to 255
 
 // @section motion
 

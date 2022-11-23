@@ -1,5 +1,5 @@
 /**
- * Escrich Phoenix 20221115
+ * Escrich Phoenix 20221122 Phoenix on Octopus
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
@@ -1263,7 +1263,7 @@
 // Microstep settings (Requires a board with pins named X_MS1, X_MS2, etc.)
 #define MICROSTEP_MODES    \
   {                        \
-    16, 16, 8, 8, 16, 16 \
+    16, 16, 16, 16, 16, 16 \
   } // [1,2,4,8,16]  --------------------- Phoenix, chequear 
 
 /**
@@ -1549,7 +1549,7 @@
  * an option on the LCD screen to continue the print from the last-known
  * point in the file.
  */
-//#define POWER_LOSS_RECOVERY   // ------------------------------- Phoenix activar para la version final, despues de las pruebas
+#define POWER_LOSS_RECOVERY   // ------------------------------- Phoenix activar para la version final, despues de las pruebas
 #if ENABLED(POWER_LOSS_RECOVERY)
 #define PLR_ENABLED_DEFAULT true // Power Loss Recovery enabled by default. (Set with 'M413 Sn' & M500)
 #define BACKUP_POWER_SUPPLY       // Backup power / UPS to move the steppers on power loss
@@ -1818,7 +1818,7 @@
 //#define STATUS_FLOWMETER_ANIM     // Use multiple bitmaps to indicate coolant flow
 #define STATUS_ALT_BED_BITMAP // Use the alternative bed bitmap
 #define STATUS_ALT_FAN_BITMAP // Use the alternative fan bitmap
-#define STATUS_FAN_FRAMES 3   // :[0,1,2,3,4] Number of fan animation frames
+#define STATUS_FAN_FRAMES 4   // :[0,1,2,3,4] Number of fan animation frames
 #define STATUS_HEAT_PERCENT   // Show heating in a progress bar
 //#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~3260 (or ~940) bytes of flash.
 
@@ -2895,9 +2895,9 @@
 #endif
 
 #if AXIS_IS_TMC(Z)
-#define Z_CURRENT 420
+#define Z_CURRENT 450
 #define Z_CURRENT_HOME Z_CURRENT
-#define Z_MICROSTEPS 8  // was 16 before
+#define Z_MICROSTEPS 16  // was 16 before, Change here too if screw advance changes, Phoenix
 #define Z_RSENSE 0.11
 #define Z_CHAIN_POS -1
 //#define Z_INTERPOLATE  true
@@ -2905,7 +2905,7 @@
 #endif
 
 #if AXIS_IS_TMC(Z2)
-#define Z2_CURRENT 420
+#define Z2_CURRENT 450
 #define Z2_CURRENT_HOME Z2_CURRENT
 #define Z2_MICROSTEPS Z_MICROSTEPS
 #define Z2_RSENSE 0.11
@@ -3797,7 +3797,7 @@
 // Extra options for the M114 "Current Position" report
 //#define M114_DETAIL         // Use 'M114` for details to check planner calculations
 //#define M114_REALTIME       // Real current position based on forward kinematics
-//#define M114_LEGACY         // M114 used to synchronize on every call. Enable if needed.
+#define M114_LEGACY         // M114 used to synchronize on every call. Enable if needed. ------------ Phoenix
 
 #define REPORT_FAN_CHANGE   // Report the new fan speed when changed by M106 (and others)
 
@@ -3940,30 +3940,42 @@
  * User-defined buttons to run custom G-code.
  * Up to 25 may be defined.
  */
-//#define CUSTOM_USER_BUTTONS
+#define CUSTOM_USER_BUTTONS  // Definicion del boton de descarga de filamento en Phoenix
 #if ENABLED(CUSTOM_USER_BUTTONS)
-//#define BUTTON1_PIN -1
+
+// Botón custom para descargar filamento, usando el boton extra del sensor de filamento de Orbiter, usando como entrada el segundo detector de filamento
+#define BUTTON1_PIN PG13 // On Pin file FIL_RUNOUT2_PIN  PG13  // E1DET
 #if PIN_EXISTS(BUTTON1)
 #define BUTTON1_HIT_STATE LOW       // State of the triggered button. NC=LOW. NO=HIGH.
 #define BUTTON1_WHEN_PRINTING false // Button allowed to trigger during printing?
-#define BUTTON1_GCODE "G28"
-#define BUTTON1_DESC "Homing" // Optional string to set the LCD status
+#define BUTTON1_GCODE "M702" // Ejecutar la rutina de descargar filamento
+#define BUTTON1_DESC "Unloading filament"  // texto que nos muestra que se está descargando el filamento
 #endif
+
+
 
 //#define BUTTON2_PIN -1
 #if PIN_EXISTS(BUTTON2)
-#define BUTTON2_HIT_STATE LOW
-#define BUTTON2_WHEN_PRINTING false
-#define BUTTON2_GCODE "M140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
-#define BUTTON2_DESC "Preheat for " PREHEAT_1_LABEL
+#define BUTTON2_HIT_STATE LOW       // State of the triggered button. NC=LOW. NO=HIGH.
+#define BUTTON2_WHEN_PRINTING false // Button allowed to trigger during printing?
+#define BUTTON2_GCODE "G28"
+#define BUTTON2_DESC "Homing" // Optional string to set the LCD status
 #endif
 
 //#define BUTTON3_PIN -1
 #if PIN_EXISTS(BUTTON3)
 #define BUTTON3_HIT_STATE LOW
 #define BUTTON3_WHEN_PRINTING false
-#define BUTTON3_GCODE "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
-#define BUTTON3_DESC "Preheat for " PREHEAT_2_LABEL
+#define BUTTON3_GCODE "M140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
+#define BUTTON3_DESC "Preheat for " PREHEAT_1_LABEL
+#endif
+
+//#define BUTTON4_PIN -1
+#if PIN_EXISTS(BUTTON4)
+#define BUTTON4_HIT_STATE LOW
+#define BUTTON4_WHEN_PRINTING false
+#define BUTTON4_GCODE "M140 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
+#define BUTTON4_DESC "Preheat for " PREHEAT_2_LABEL
 #endif
 #endif
 
