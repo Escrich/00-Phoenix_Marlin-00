@@ -1219,12 +1219,12 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT            \
   {                                            \
-    79.82249512, 98.7281815, 398.4283055, 690 \
+    79.82249512, 98.7281815, 398.4283055, 655.5 \
   }
 // Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
 // Valores para un husillo de docho milimetros de avance 16 micropasos
 // 79.82249512, 79.88339666, 398.4283055, 94.75
-// 690 pasos, configuracion para extrusora orbiter
+// 690 pasos, configuracion estandar para extrusora orbiter, yo siempre bajo un 5%, = 655.5
 
 /*
 Orbiter Extruder V1.5
@@ -1288,7 +1288,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  *   M204 T    Travel Acceleration
  */
 #define DEFAULT_ACCELERATION 3000         // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION 3000 // E acceleration for retracts
+#define DEFAULT_RETRACT_ACCELERATION 600 // E acceleration for retracts Orbiter retract speed
 #define DEFAULT_TRAVEL_ACCELERATION 3000  // X, Y, Z acceleration for travel (non printing) moves
 // all accelerations values on Anet were 1250
 /**
@@ -1624,7 +1624,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define NOZZLE_TO_PROBE_OFFSET \
   {                            \
-    -15, -28, -0.250           \
+    -15, -28, -1.505          \
   } // Datos para BLTouch en phoenix 20221127
 
 // Most probes should stay away from the edges of the bed, but
@@ -2364,32 +2364,32 @@ Motor current: 0.5A Peak or 0.35A RMS
 #define PREHEAT_1_LABEL "PLA"
 #define PREHEAT_1_TEMP_HOTEND 210
 #define PREHEAT_1_TEMP_BED 60
-#define PREHEAT_1_FAN_SPEED 255 // Value from 0 to 255
+#define PREHEAT_1_FAN_SPEED 0 // Value from 0 to 255 for Layer Fan
 
 #define PREHEAT_2_LABEL "PETG"
 #define PREHEAT_2_TEMP_HOTEND 250
 #define PREHEAT_2_TEMP_BED 90
-#define PREHEAT_2_FAN_SPEED 255 // Value from 0 to 255
+#define PREHEAT_2_FAN_SPEED 0 // Value from 0 to 255 for Layer Fan
 
 #define PREHEAT_3_LABEL "ABS"
 #define PREHEAT_3_TEMP_HOTEND 255
 #define PREHEAT_3_TEMP_BED 110
-#define PREHEAT_3_FAN_SPEED 255 // Value from 0 to 255
+#define PREHEAT_3_FAN_SPEED 0 // Value from 0 to 255 for Layer Fan
 
 #define PREHEAT_4_LABEL "FLEX"
 #define PREHEAT_4_TEMP_HOTEND 240
 #define PREHEAT_4_TEMP_BED 50
-#define PREHEAT_4_FAN_SPEED 255 // Value from 0 to 255
+#define PREHEAT_4_FAN_SPEED 0 // Value from 0 to 255 for Layer Fan
 
 #define PREHEAT_5_LABEL "HIPS"
 #define PREHEAT_5_TEMP_HOTEND 220
 #define PREHEAT_5_TEMP_BED 110
-#define PREHEAT_5_FAN_SPEED 255 // Value from 0 to 255
+#define PREHEAT_5_FAN_SPEED 0 // Value from 0 to 255 for Layer Fan
 
 #define PREHEAT_6_LABEL "Boquilla"
 #define PREHEAT_6_TEMP_HOTEND 250
-#define PREHEAT_6_TEMP_BED 25
-#define PREHEAT_6_FAN_SPEED 255 // Value from 0 to 255
+#define PREHEAT_6_TEMP_BED 0
+#define PREHEAT_6_FAN_SPEED 0 // Value from 0 to 255 for Layer Fan
 
 // @section motion
 

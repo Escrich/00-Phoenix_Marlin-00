@@ -1633,7 +1633,7 @@
 
 //#define SD_REPRINT_LAST_SELECTED_FILE // On print completion open the LCD Menu and select the same file
 
-//#define AUTO_REPORT_SD_STATUS         // Auto-report media status with 'M27 S<seconds>'
+#define AUTO_REPORT_SD_STATUS         // Auto-report media status with 'M27 S<seconds>'
 
 /**
  * Support for USB thumb drives using an Arduino USB Host Shield or
@@ -1718,7 +1718,7 @@
  *
  * :[ 'LCD', 'ONBOARD', 'CUSTOM_CABLE' ]
  */
-#define SDCARD_CONNECTION LCD
+#define SDCARD_CONNECTION ONBOARD
 
 // Enable if SD detect is rendered useless (e.g., by using an SD extender)
 //#define NO_SD_DETECT
@@ -3750,7 +3750,7 @@
  */
 #define EXTENDED_CAPABILITIES_REPORT
 #if ENABLED(EXTENDED_CAPABILITIES_REPORT)
-//#define M115_GEOMETRY_REPORT
+#define M115_GEOMETRY_REPORT
 #endif
 
 // @section security
@@ -3795,7 +3795,7 @@
 // @section reporting
 
 // Extra options for the M114 "Current Position" report
-//#define M114_DETAIL         // Use 'M114` for details to check planner calculations
+#define M114_DETAIL         // Use 'M114` for details to check planner calculations
 //#define M114_REALTIME       // Real current position based on forward kinematics
 #define M114_LEGACY         // M114 used to synchronize on every call. Enable if needed. ------------ Phoenix
 
