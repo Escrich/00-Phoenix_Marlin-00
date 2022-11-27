@@ -1222,9 +1222,24 @@
     79.82249512, 98.7281815, 398.4283055, 690 \
   }
 // Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
-// Valores para un husillo de dos milimetros de avance en lugar de 8, solo 8 micropasos, en lugar de 16
+// Valores para un husillo de docho milimetros de avance 16 micropasos
 // 79.82249512, 79.88339666, 398.4283055, 94.75
 // 690 pasos, configuracion para extrusora orbiter
+
+/*
+Orbiter Extruder V1.5
+
+Recommended firmware configuration:
+
+Steps: 690 steps/mm @ 16 micro-stepping
+Acceleration: 600 mm/s^2
+Maximum instantaneous speed change (jerk): 300 mm/min(RRF), 5 (Marlin) = 5 mm/sec
+Maximum speed: 3600 mm/min = 60 mm/sec
+Pressure advance: 0.02s
+Retraction: ~1.2mm
+Retraction speed: 60mm/s
+Motor current: 0.5A Peak or 0.35A RMS
+*/
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1233,8 +1248,9 @@
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    300, 300, 12, 180        \
-  } // Ajustadas conforme a Hypothetic  ////////--------------- Atención 50% mas de velocidad en Phoenix-------- antes 200, 200, 12, 120 ----------------
+    300, 300, 12, 60        \
+  } // Ajustadas conforme a Hypothetic  ////////--------------- Atención 50% mas de velocidad en Phoenix-------- antes 200, 200, 12, 60 Orbiter ----------------
+// Orbiter V1.5 Maximum speed: 3600 mm/min = 60 mm/sec
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1252,7 +1268,7 @@
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    3000, 3000, 100, 10000       \
+    3000, 3000, 100, 600       \
   } // Valores en Hypothetic 1000, 1000, 100, 5000
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -1306,7 +1322,7 @@
 #endif
 #endif
 
-#define DEFAULT_EJERK 4.0 // May be used by Linear Advance
+#define DEFAULT_EJERK 5.0 // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
