@@ -1,5 +1,5 @@
 /**
- * Escrich Phoenix 20221122 Phoenix on Octopus
+ * Escrich Phoenix 20221123 Phoenix on Octopus
  * Marlin 3D Printer Firmware
  * Copyright (c) 2020 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
@@ -549,7 +549,7 @@
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  *
  */
-#define TEMP_SENSOR_0 998 // 5 // Before it was 504 -----------------------------------Dummy values return to good ones
+#define TEMP_SENSOR_0 5 // Before it was 504 -----------------------------------998 Dummy values return to good ones
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -685,10 +685,10 @@
     114.00, 114.00      \
   }
 #else
-// Phoenix Autotune PID results real ones ------------- 20221103
-#define DEFAULT_Kp 14.88
-#define DEFAULT_Ki 0.93
-#define DEFAULT_Kd 59.82
+// Phoenix Autotune PID results real ones ------------- 20221127
+#define DEFAULT_Kp 26.5
+#define DEFAULT_Ki 1.96
+#define DEFAULT_Kd 89.5
 #endif
 #endif
 
@@ -1608,8 +1608,8 @@
  */
 #define NOZZLE_TO_PROBE_OFFSET \
   {                            \
-    -32, -38, -0.250           \
-  } // Con el cabezal rojo de pruebas
+    -15, -28, -0.250           \
+  } // Datos para BLTouch en phoenix 20221127
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -3324,7 +3324,7 @@
 //
 // Touch Screen Settings
 //
-//#define TOUCH_SCREEN // not for TFT24
+//#define TOUCH_SCREEN // not for TFT24 neither on Phoenix or Hypothetic printers
 #if ENABLED(TOUCH_SCREEN)
 #define BUTTON_DELAY_EDIT 50  // (ms) Button repeat delay for edit screens
 #define BUTTON_DELAY_MENU 250 // (ms) Button repeat delay for menus
@@ -3443,15 +3443,15 @@
 // Support for Adafruit NeoPixel LED driver
 #define NEOPIXEL_LED
 #if ENABLED(NEOPIXEL_LED)
-#define NEOPIXEL_TYPE NEO_GRBW // NEO_GRBW, NEO_RGBW, NEO_GRB, NEO_RBG, etc.
+#define NEOPIXEL_TYPE NEO_GRB // NEO_GRBW, NEO_RGBW, NEO_GRB, NEO_RBG, etc.
                                // See https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.h
 //#define NEOPIXEL_PIN                4 // LED driving pin
 //#define NEOPIXEL2_TYPE  NEOPIXEL_TYPE
 //#define NEOPIXEL2_PIN               5
-#define NEOPIXEL_PIXELS 30      // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
+#define NEOPIXEL_PIXELS 6     // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
 #define NEOPIXEL_IS_SEQUENTIAL  // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
 #define NEOPIXEL_BRIGHTNESS 127 // Initial brightness (0-255)
-//#define NEOPIXEL_STARTUP_TEST         // Cycle through colors at startup
+#define NEOPIXEL_STARTUP_TEST         // Cycle through colors at startup
 
 // Support for second Adafruit NeoPixel LED driver controlled with M150 S1 ...
 //#define NEOPIXEL2_SEPARATE

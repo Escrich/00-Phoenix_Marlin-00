@@ -629,7 +629,7 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#define E0_AUTO_FAN_PIN -1 // FAN1_PIN // Escrich Extruder cooling
+#define E0_AUTO_FAN_PIN FAN1_PIN // Escrich Extruder cooling
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
@@ -1559,7 +1559,7 @@
 #define POWER_LOSS_PULLUP         // Set pullup / pulldown as appropriate for your sensor
 //#define POWER_LOSS_PULLDOWN
 #define POWER_LOSS_PURGE_LEN   20 // (mm) Length of filament to purge on resume
-//#define POWER_LOSS_RETRACT_LEN 10 // (mm) Length of filament to retract on fail. Requires backup power.
+#define POWER_LOSS_RETRACT_LEN 10 // (mm) Length of filament to retract on fail. Requires backup power.
 
 // Without a POWER_LOSS_PIN the following option helps reduce wear on the SD card,
 // especially with "vase mode" printing. Set too high and vases cannot be continued.
