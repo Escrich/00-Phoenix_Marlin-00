@@ -1264,7 +1264,7 @@
 #define MICROSTEP_MODES    \
   {                        \
     16, 16, 16, 16, 16, 16 \
-  } // [1,2,4,8,16]  --------------------- Phoenix, chequear 
+  } // [1,2,4,8,16]  --------------------- Phoenix, chequear Ok
 
 /**
  *  @section  stepper motor current
@@ -2649,7 +2649,7 @@
 #define FILAMENT_CHANGE_SLOW_LOAD_FEEDRATE 6 // (mm/s) Slow move when starting load.
 #define FILAMENT_CHANGE_SLOW_LOAD_LENGTH 0   // (mm) Slow length, to allow time to insert material.
                                              // 0 to disable start loading and skip to fast load only
-#define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE 6 // (mm/s) Load filament feedrate. This can be pretty fast.
+#define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE 12 // (mm/s) Load filament feedrate. This can be pretty fast.
 #define FILAMENT_CHANGE_FAST_LOAD_ACCEL 25   // (mm/s^2) Lower acceleration may allow a faster feedrate.
 #define FILAMENT_CHANGE_FAST_LOAD_LENGTH 0   // (mm) Load length of filament, from extruder gear to nozzle.
                                              //   For Bowden, the full length of the tube and nozzle.
@@ -3839,7 +3839,7 @@
 //#define GCODE_MOTION_MODES  // Remember the motion mode (G0 G1 G2 G3 G5 G38.X) and apply for X Y Z E F, etc.
 
 // Enable and set a (default) feedrate for all G0 moves
-#define G0_FEEDRATE 3000 // (mm/min)  chequear Phoenix
+#define G0_FEEDRATE 1250 // (mm/min)  chequear Phoenix
 #ifdef G0_FEEDRATE
 //#define VARIABLE_G0_FEEDRATE // The G0 feedrate is set by F in G0 motion mode
 #endif

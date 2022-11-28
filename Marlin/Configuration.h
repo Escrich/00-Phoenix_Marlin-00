@@ -865,7 +865,7 @@
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
 #define PREVENT_COLD_EXTRUSION
-#define EXTRUDE_MINTEMP 170
+#define EXTRUDE_MINTEMP 190
 
 /**
  * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
@@ -1248,7 +1248,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    300, 300, 12, 60        \
+    250, 250, 12, 60        \
   } // Ajustadas conforme a Hypothetic  ////////--------------- Atención 50% mas de velocidad en Phoenix-------- antes 200, 200, 12, 60 Orbiter ----------------
 // Orbiter V1.5 Maximum speed: 3600 mm/min = 60 mm/sec
 
@@ -1782,7 +1782,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false // phoenix, sin ajustar aun
+#define INVERT_X_DIR false // Phoenix, Ok
 #define INVERT_Y_DIR true
 #define INVERT_Z_DIR true // True on Phoenix para motores de 600 mA
 //#define INVERT_I_DIR false
