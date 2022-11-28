@@ -1219,7 +1219,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT            \
   {                                            \
-    79.82249512, 98.7281815, 398.4283055, 690 \
+    99.7781189, 98.7281815, 398.4283055, 690 \
   }
 // Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
 // Valores para un husillo de docho milimetros de avance 16 micropasos
@@ -1845,7 +1845,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #define Z_MIN_POS 0
 #define X_MAX_POS (X_BED_SIZE + 8)  // ------------ Limite total de X Phoenix despues de la reforma, añadiendo 8 mm. de margen a la derecha
 #define Y_MAX_POS (Y_BED_SIZE + 15) // ------------ Limite total de Y Phoenix despues de la reforma, añadiendo 15 mm. de margen al frente
-#define Z_MAX_POS (250 + 8)         // ------------ Max Z, no definido aun 20221123 
+#define Z_MAX_POS (240 + 0)         // ------------ Max Z, no definido aun 20221123 
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
 //#define J_MIN_POS 0

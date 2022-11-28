@@ -1820,7 +1820,7 @@
 #define STATUS_ALT_FAN_BITMAP // Use the alternative fan bitmap
 #define STATUS_FAN_FRAMES 4   // :[0,1,2,3,4] Number of fan animation frames
 #define STATUS_HEAT_PERCENT   // Show heating in a progress bar
-//#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~3260 (or ~940) bytes of flash.
+#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~3260 (or ~940) bytes of flash.
 
 // Frivolous Game Options
 //#define MARLIN_BRICKOUT
@@ -2995,7 +2995,7 @@
 #endif
 
 #if AXIS_IS_TMC(E0)
-#define E0_CURRENT 500 // 500 mA for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
+#define E0_CURRENT 500 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
 #define E0_MICROSTEPS 16
 #define E0_RSENSE 0.11
 #define E0_CHAIN_POS -1
