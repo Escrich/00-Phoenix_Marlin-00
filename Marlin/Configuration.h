@@ -1219,7 +1219,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT            \
   {                                            \
-    79.82249512, 98.7281815, 398.4283055, 655.5 \
+    79.82249512, 98.7281815, 398.4283055, 690 \
   }
 // Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
 // Valores para un husillo de docho milimetros de avance 16 micropasos
@@ -1268,8 +1268,8 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    3000, 3000, 100, 600       \
-  } // Valores en Hypothetic 1000, 1000, 100, 5000
+    1250, 1250, 100, 600       \
+  } // Valores en Hypothetic 1000, 1000, 100, 5000, Default 3000, 3000, 100, 600  
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1287,9 +1287,9 @@ Motor current: 0.5A Peak or 0.35A RMS
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION 3000         // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION 1250         // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION 600 // E acceleration for retracts Orbiter retract speed
-#define DEFAULT_TRAVEL_ACCELERATION 3000  // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION 1250  // X, Y, Z acceleration for travel (non printing) moves
 // all accelerations values on Anet were 1250
 /**
  * Default Jerk limits (mm/s)
@@ -1918,7 +1918,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
 #define NUM_RUNOUT_SENSORS 1            // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
 
-#define FIL_RUNOUT_STATE LOW // Pin state indicating that filament is NOT present.
+#define FIL_RUNOUT_STATE HIGH // Pin state indicating that filament is NOT present.
 #define FIL_RUNOUT_PULLUP    // Use internal pullup for filament runout pins.
 //#define FIL_RUNOUT_PULLDOWN           // Use internal pulldown for filament runout pins.
 //#define WATCH_ALL_RUNOUT_SENSORS      // Execute runout script on any triggering sensor, not only for the active extruder.
