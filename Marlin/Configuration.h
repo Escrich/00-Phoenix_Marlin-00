@@ -1248,7 +1248,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    250, 250, 12, 60        \
+    200, 200, 12, 60        \
   } // Ajustadas conforme a Hypothetic  ////////--------------- Atención 50% mas de velocidad en Phoenix-------- antes 200, 200, 12, 60 Orbiter ----------------
 // Orbiter V1.5 Maximum speed: 3600 mm/min = 60 mm/sec
 
@@ -1268,7 +1268,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    1250, 1250, 100, 600       \
+    1000, 1000, 200, 600       \
   } // Valores en Hypothetic 1000, 1000, 100, 5000, Default 3000, 3000, 100, 600  
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -1287,9 +1287,9 @@ Motor current: 0.5A Peak or 0.35A RMS
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION 1250         // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION 1000         // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION 600 // E acceleration for retracts Orbiter retract speed
-#define DEFAULT_TRAVEL_ACCELERATION 1250  // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION 1000  // X, Y, Z acceleration for travel (non printing) moves
 // all accelerations values on Anet were 1250
 /**
  * Default Jerk limits (mm/s)
