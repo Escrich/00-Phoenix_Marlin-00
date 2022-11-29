@@ -223,7 +223,7 @@
 //#define HEATER_CHAMBER_INVERTING false
 //#define FAN1_PIN                   -1   // Remove the fan signal on pin P2_04 (example: SKR 1.4 Turbo HE1 plug)
 
-#define CHAMBER_FAN               // Enable a fan on the chamber
+//#define CHAMBER_FAN               // Enable a fan on the chamber
 #if ENABLED(CHAMBER_FAN)
 //#define CHAMBER_FAN_INDEX   4   // Index of a fan to repurpose as the chamber fan. (Default: first unused fan)
 #define CHAMBER_FAN_MODE 1 // Fan control mode: 0=Static; 1=Linear increase when temp is higher than target; 2=V-shaped curve; 3=similar to 1 but fan is always on.
@@ -531,7 +531,7 @@
  * The fan turns on automatically whenever any driver is enabled and turns
  * off (or reduces to idle speed) shortly after drivers are turned off.
  */
-#define USE_CONTROLLER_FAN  // Ventilador automatico apra la electronica
+#define USE_CONTROLLER_FAN  // Ventilador automatico para la electronica
 #if ENABLED(USE_CONTROLLER_FAN)
 #define CONTROLLER_FAN_PIN FAN5_PIN   // Set a custom pin for the controller fan
 //#define CONTROLLER_FAN_USE_Z_ONLY       // With this option only the Z axis is considered
