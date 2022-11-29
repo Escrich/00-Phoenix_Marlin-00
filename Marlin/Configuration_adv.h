@@ -223,10 +223,10 @@
 //#define HEATER_CHAMBER_INVERTING false
 //#define FAN1_PIN                   -1   // Remove the fan signal on pin P2_04 (example: SKR 1.4 Turbo HE1 plug)
 
-//#define CHAMBER_FAN               // Enable a fan on the chamber
+#define CHAMBER_FAN               // Enable a fan on the chamber
 #if ENABLED(CHAMBER_FAN)
-//#define CHAMBER_FAN_INDEX   2   // Index of a fan to repurpose as the chamber fan. (Default: first unused fan)
-#define CHAMBER_FAN_MODE 2 // Fan control mode: 0=Static; 1=Linear increase when temp is higher than target; 2=V-shaped curve; 3=similar to 1 but fan is always on.
+//#define CHAMBER_FAN_INDEX   4   // Index of a fan to repurpose as the chamber fan. (Default: first unused fan)
+#define CHAMBER_FAN_MODE 1 // Fan control mode: 0=Static; 1=Linear increase when temp is higher than target; 2=V-shaped curve; 3=similar to 1 but fan is always on.
 #if CHAMBER_FAN_MODE == 0
 #define CHAMBER_FAN_BASE 255 // Chamber fan PWM (0-255)
 #elif CHAMBER_FAN_MODE == 1
@@ -276,9 +276,10 @@
 #if TEMP_SENSOR_BOARD
 #define THERMAL_PROTECTION_BOARD // Halt the printer if the board sensor leaves the temp range below.
 #define BOARD_MINTEMP 5          // (°C)
-#define BOARD_MAXTEMP 45         // (°C)
+#define BOARD_MAXTEMP 50         // (°C)
+#define BOARD_DEFAULT_TEMP 25   // (°C) Added by me
 #ifndef TEMP_BOARD_PIN
-//#define TEMP_BOARD_PIN -1      // Board temp sensor pin, if not set in pins file.
+#define TEMP_BOARD_PIN TEMP_3_PIN     // Board temp sensor pin, if not set in pins file. Ventlador placa
 #endif
 #endif
 
@@ -530,9 +531,9 @@
  * The fan turns on automatically whenever any driver is enabled and turns
  * off (or reduces to idle speed) shortly after drivers are turned off.
  */
-#define USE_CONTROLLER_FAN
+#define USE_CONTROLLER_FAN  // Ventilador automatico apra la electronica
 #if ENABLED(USE_CONTROLLER_FAN)
-#define CONTROLLER_FAN_PIN FAN5_PIN // Set a custom pin for the controller fan
+#define CONTROLLER_FAN_PIN FAN5_PIN   // Set a custom pin for the controller fan
 //#define CONTROLLER_FAN_USE_Z_ONLY       // With this option only the Z axis is considered
 #define CONTROLLER_FAN_IGNORE_Z        // Ignore Z stepper. Useful when stepper timeout is disabled.
 #define CONTROLLERFAN_SPEED_MIN 0      // (0-255) Minimum speed. (If set below this value the fan is turned off.)
@@ -637,15 +638,21 @@
 #define E5_AUTO_FAN_PIN -1
 #define E6_AUTO_FAN_PIN -1
 #define E7_AUTO_FAN_PIN -1
-#define CHAMBER_AUTO_FAN_PIN -1
+#define CHAMBER_AUTO_FAN_PIN -1 // Ventilador Chamber
 #define COOLER_AUTO_FAN_PIN -1
+#define BOARD_AUTO_FAN_PIN FAN4_PIN // Ventilador placa
+
 
 #define EXTRUDER_AUTO_FAN_TEMPERATURE 50
 #define EXTRUDER_AUTO_FAN_SPEED 255 // 255 == full speed
-#define CHAMBER_AUTO_FAN_TEMPERATURE 30
+#define CHAMBER_AUTO_FAN_TEMPERATURE 21 // Enciende el extractor por encima de 25 grados
 #define CHAMBER_AUTO_FAN_SPEED 255
 #define COOLER_AUTO_FAN_TEMPERATURE 18
 #define COOLER_AUTO_FAN_SPEED 255
+#define BOARD_AUTO_FAN_TEMPERATURE 25 // Enciende el extractor por encima de 25 grados, ventilador placa
+#define BOARD_AUTO_FAN_SPEED 255
+
+
 
 /**
  * Hotend Cooling Fans tachometers
@@ -1437,7 +1444,7 @@
 //#define LCD_DECIMAL_SMALL_XY
 
 // Add an 'M73' G-code to set the current percentage
-//#define LCD_SET_PROGRESS_MANUALLY
+#define LCD_SET_PROGRESS_MANUALLY
 
 // Show the E position (filament used) during printing
 #define LCD_SHOW_E_TOTAL
@@ -1475,7 +1482,7 @@
 #if CAN_SHOW_REMAINING_TIME
 #define SHOW_REMAINING_TIME         // Display estimated time to completion
 #if ENABLED(SHOW_REMAINING_TIME)
-//#define USE_M73_REMAINING_TIME    // Use remaining time from M73 command instead of estimation
+#define USE_M73_REMAINING_TIME    // Use remaining time from M73 command instead of estimation
 #define ROTATE_PROGRESS_DISPLAY   // Display (P)rogress, (E)lapsed, and (R)emaining time
 #endif
 #endif
@@ -2642,21 +2649,21 @@
                                              // This short retract is done immediately, before parking the nozzle.
 #define FILAMENT_CHANGE_UNLOAD_FEEDRATE 20   // (mm/s) Unload filament feedrate. This can be pretty fast.
 #define FILAMENT_CHANGE_UNLOAD_ACCEL 25      // (mm/s^2) Lower acceleration may allow a faster feedrate.
-#define FILAMENT_CHANGE_UNLOAD_LENGTH 200    // (mm) The length of filament for a complete unload.
+#define FILAMENT_CHANGE_UNLOAD_LENGTH 150    // (mm) The length of filament for a complete unload.
                                              //   For Bowden, the full length of the tube and nozzle.
                                              //   For direct drive, the full length of the nozzle.
                                              //   Set to 0 for manual unloading.
 #define FILAMENT_CHANGE_SLOW_LOAD_FEEDRATE 6 // (mm/s) Slow move when starting load.
-#define FILAMENT_CHANGE_SLOW_LOAD_LENGTH 0   // (mm) Slow length, to allow time to insert material.
+#define FILAMENT_CHANGE_SLOW_LOAD_LENGTH 10   // (mm) Slow length, to allow time to insert material.
                                              // 0 to disable start loading and skip to fast load only
 #define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE 12 // (mm/s) Load filament feedrate. This can be pretty fast.
 #define FILAMENT_CHANGE_FAST_LOAD_ACCEL 25   // (mm/s^2) Lower acceleration may allow a faster feedrate.
-#define FILAMENT_CHANGE_FAST_LOAD_LENGTH 0   // (mm) Load length of filament, from extruder gear to nozzle.
+#define FILAMENT_CHANGE_FAST_LOAD_LENGTH 10   // (mm) Load length of filament, from extruder gear to nozzle.
                                              //   For Bowden, the full length of the tube and nozzle.
                                              //   For direct drive, the full length of the nozzle.
 //#define ADVANCED_PAUSE_CONTINUOUS_PURGE       // Purge continuously up to the purge length until interrupted.
 #define ADVANCED_PAUSE_PURGE_FEEDRATE 3 // (mm/s) Extrude feedrate (after loading). Should be slower than load feedrate.
-#define ADVANCED_PAUSE_PURGE_LENGTH 200  // (mm) Length to extrude after loading.
+#define ADVANCED_PAUSE_PURGE_LENGTH 150  // (mm) Length to extrude after loading.
                                         //   Set to 0 for manual extrusion.
                                         //   Filament can be extruded repeatedly from the Filament Change menu
                                         //   until extrusion is consistent, and to purge old filament.
@@ -2855,7 +2862,7 @@
 #define INTERPOLATE true
 
 #if AXIS_IS_TMC(X)
-#define X_CURRENT 800            // (mA) RMS current. Multiply by 1.414 for peak current.
+#define X_CURRENT 750            // (mA) RMS current. Multiply by 1.414 for peak current.
 #define X_CURRENT_HOME X_CURRENT // (mA) RMS current for sensorless homing
 #define X_MICROSTEPS 16          // 0..256
 #define X_RSENSE 0.11
@@ -2875,7 +2882,7 @@
 #endif
 
 #if AXIS_IS_TMC(Y)
-#define Y_CURRENT 800
+#define Y_CURRENT 750
 #define Y_CURRENT_HOME Y_CURRENT
 #define Y_MICROSTEPS 16
 #define Y_RSENSE 0.11
@@ -2895,7 +2902,7 @@
 #endif
 
 #if AXIS_IS_TMC(Z)
-#define Z_CURRENT 450
+#define Z_CURRENT 420
 #define Z_CURRENT_HOME Z_CURRENT
 #define Z_MICROSTEPS 16  // was 16 before, Change here too if screw advance changes, Phoenix
 #define Z_RSENSE 0.11
@@ -2905,7 +2912,7 @@
 #endif
 
 #if AXIS_IS_TMC(Z2)
-#define Z2_CURRENT 450
+#define Z2_CURRENT 420
 #define Z2_CURRENT_HOME Z2_CURRENT
 #define Z2_MICROSTEPS Z_MICROSTEPS
 #define Z2_RSENSE 0.11
@@ -2995,7 +3002,7 @@
 #endif
 
 #if AXIS_IS_TMC(E0)
-#define E0_CURRENT 500 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
+#define E0_CURRENT 350 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
 #define E0_MICROSTEPS 16
 #define E0_RSENSE 0.11
 #define E0_CHAIN_POS -1

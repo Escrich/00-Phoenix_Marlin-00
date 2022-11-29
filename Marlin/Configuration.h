@@ -559,9 +559,9 @@
 #define TEMP_SENSOR_7 0
 #define TEMP_SENSOR_BED 1 // Before it was 505 -------------------------------- 998 Dummy values returned to good ones
 #define TEMP_SENSOR_PROBE 0
-#define TEMP_SENSOR_CHAMBER 0
+#define TEMP_SENSOR_CHAMBER 0 
 #define TEMP_SENSOR_COOLER 0
-#define TEMP_SENSOR_BOARD 0
+#define TEMP_SENSOR_BOARD 5 // Sensor para poner el extractor en marcha
 #define TEMP_SENSOR_REDUNDANT 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -590,10 +590,13 @@
 #define TEMP_BED_HYSTERESIS 8      // (°C) Temperature proximity considered "close enough" to the target
 #endif
 
+
+// Modificado para controlar el ventilador extractor como Chamber fan, no activo
 #if TEMP_SENSOR_CHAMBER
-#define TEMP_CHAMBER_RESIDENCY_TIME 10 // (seconds) Time to wait for chamber to "settle" in M191
+#define TEMP_CHAMBER_RESIDENCY_TIME 1 // (seconds) Time to wait for chamber to "settle" in M191
 #define TEMP_CHAMBER_WINDOW 1          // (°C) Temperature proximity for the "temperature reached" timer
 #define TEMP_CHAMBER_HYSTERESIS 3      // (°C) Temperature proximity considered "close enough" to the target
+#define TEMP_CHAMBER_PIN TEMP_3_PIN    // Definido para Phoenix, el quinto sensor de temperatura
 #endif
 
 /**
@@ -637,7 +640,7 @@
 #define HEATER_6_MAXTEMP 275
 #define HEATER_7_MAXTEMP 275
 #define BED_MAXTEMP 135
-#define CHAMBER_MAXTEMP 60
+#define CHAMBER_MAXTEMP 50
 
 /**
  * Thermal Overshoot
@@ -647,7 +650,7 @@
  */
 #define HOTEND_OVERSHOOT 20 // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT
 #define BED_OVERSHOOT 10    // (°C) Forbid temperatures over MAXTEMP - OVERSHOOT
-#define COOLER_OVERSHOOT 2  // (°C) Forbid temperatures closer than OVERSHOOT
+//#define COOLER_OVERSHOOT 2  // (°C) Forbid temperatures closer than OVERSHOOT
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -828,7 +831,7 @@
  * When set to any value below 255, enables a form of PWM to the chamber heater that acts like a divider
  * so don't use it unless you are OK with PWM on your heater. (See the comment on enabling PIDTEMPCHAMBER)
  */
-#define MAX_CHAMBER_POWER 255 // limits duty cycle to chamber heater; 255=full current
+#define MAX_CHAMBER_POWER 0 // limits duty cycle to chamber heater; 255=full current
 
 #if ENABLED(PIDTEMPCHAMBER)
 #define MIN_CHAMBER_POWER 0
@@ -865,7 +868,7 @@
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
 #define PREVENT_COLD_EXTRUSION
-#define EXTRUDE_MINTEMP 190
+#define EXTRUDE_MINTEMP 175
 
 /**
  * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
@@ -1268,7 +1271,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    1000, 1000, 200, 600       \
+    1000, 1000, 100, 600       \
   } // Valores en Hypothetic 1000, 1000, 100, 5000, Default 3000, 3000, 100, 600  
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
@@ -1740,7 +1743,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 //#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
 
 // Require minimum nozzle and/or bed temperature for probing
-//#define PREHEAT_BEFORE_PROBING //  ----------- Desactivado por el momento, Ya activado, solo se desactiva para pruebas, Phoenix -----------------
+#define PREHEAT_BEFORE_PROBING //  ----------- Ya activado, solo se desactiva para pruebas, Phoenix -----------------
 #if ENABLED(PREHEAT_BEFORE_PROBING)
 #define PROBING_NOZZLE_TEMP 190 // (°C) Only applies to E0 at this time
 #define PROBING_BED_TEMP 60
@@ -1840,7 +1843,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #define Y_BED_SIZE 220
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
-#define X_MIN_POS -3 //  -------------------------- Medidos en maquina tras reforma ----------------------
+#define X_MIN_POS -5 //  -------------------------- Medidos en maquina tras reforma ----------------------
 #define Y_MIN_POS -65
 #define Z_MIN_POS 0
 #define X_MAX_POS (X_BED_SIZE + 8)  // ------------ Limite total de X Phoenix despues de la reforma, añadiendo 8 mm. de margen a la derecha
@@ -3461,10 +3464,10 @@ Motor current: 0.5A Peak or 0.35A RMS
 #if ENABLED(NEOPIXEL_LED)
 #define NEOPIXEL_TYPE NEO_GRB // NEO_GRBW, NEO_RGBW, NEO_GRB, NEO_RBG, etc.
                                // See https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.h
-//#define NEOPIXEL_PIN                4 // LED driving pin
+#define NEOPIXEL_PIN                PB0 // LED driving pin PB0 on Octopus
 //#define NEOPIXEL2_TYPE  NEOPIXEL_TYPE
 //#define NEOPIXEL2_PIN               5
-#define NEOPIXEL_PIXELS 6     // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
+#define NEOPIXEL_PIXELS 8     // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
 #define NEOPIXEL_IS_SEQUENTIAL  // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
 #define NEOPIXEL_BRIGHTNESS 127 // Initial brightness (0-255)
 #define NEOPIXEL_STARTUP_TEST         // Cycle through colors at startup
@@ -3480,10 +3483,10 @@ Motor current: 0.5A Peak or 0.35A RMS
 #endif
 
 // Use some of the NeoPixel LEDs for static (background) lighting
-//#define NEOPIXEL_BKGD_INDEX_FIRST   0 // Index of the first background LED
-//#define NEOPIXEL_BKGD_INDEX_LAST    5 // Index of the last background LED
-//#define NEOPIXEL_BKGD_COLOR { 255, 255, 255, 0 }  // R, G, B, W
-//#define NEOPIXEL_BKGD_ALWAYS_ON       // Keep the backlight on when other NeoPixels are off
+#define NEOPIXEL_BKGD_INDEX_FIRST   0 // Index of the first background LED
+#define NEOPIXEL_BKGD_INDEX_LAST    2 // Index of the last background LED
+#define NEOPIXEL_BKGD_COLOR { 255, 255, 255, 0 }  // R, G, B, W
+#define NEOPIXEL_BKGD_ALWAYS_ON       // Keep the backlight on when other NeoPixels are off
 #endif
 
 /**
