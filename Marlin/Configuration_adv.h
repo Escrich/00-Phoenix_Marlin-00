@@ -1270,7 +1270,7 @@
 // Microstep settings (Requires a board with pins named X_MS1, X_MS2, etc.)
 #define MICROSTEP_MODES    \
   {                        \
-    16, 16, 16, 16, 16, 16 \
+    16, 16, 16, 16, 32, 16 \
   } // [1,2,4,8,16]  --------------------- Phoenix, chequear Ok
 
 /**
@@ -2645,7 +2645,7 @@
 #define ADVANCED_PAUSE_FEATURE
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
 #define PAUSE_PARK_RETRACT_FEEDRATE 60       // (mm/s) Initial retract feedrate.
-#define PAUSE_PARK_RETRACT_LENGTH 2          // (mm) Initial retract.
+#define PAUSE_PARK_RETRACT_LENGTH 3          // (mm) Initial retract.
                                              // This short retract is done immediately, before parking the nozzle.
 #define FILAMENT_CHANGE_UNLOAD_FEEDRATE 20   // (mm/s) Unload filament feedrate. This can be pretty fast.
 #define FILAMENT_CHANGE_UNLOAD_ACCEL 25      // (mm/s^2) Lower acceleration may allow a faster feedrate.
@@ -2902,7 +2902,7 @@
 #endif
 
 #if AXIS_IS_TMC(Z)
-#define Z_CURRENT 420
+#define Z_CURRENT 750
 #define Z_CURRENT_HOME Z_CURRENT
 #define Z_MICROSTEPS 16  // was 16 before, Change here too if screw advance changes, Phoenix
 #define Z_RSENSE 0.11
@@ -2912,7 +2912,7 @@
 #endif
 
 #if AXIS_IS_TMC(Z2)
-#define Z2_CURRENT 420
+#define Z2_CURRENT 750
 #define Z2_CURRENT_HOME Z2_CURRENT
 #define Z2_MICROSTEPS Z_MICROSTEPS
 #define Z2_RSENSE 0.11
@@ -3003,7 +3003,7 @@
 
 #if AXIS_IS_TMC(E0)
 #define E0_CURRENT 350 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
-#define E0_MICROSTEPS 16
+#define E0_MICROSTEPS 32 // Ojo, cambiado a 32 micro pasos en extrusora como lo hace Prusa
 #define E0_RSENSE 0.11
 #define E0_CHAIN_POS -1
 //#define E0_INTERPOLATE true
