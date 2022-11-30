@@ -1222,7 +1222,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT            \
   {                                            \
-    100, 100, 400, 1208  \
+    100, 100, 1600, 1208  \
   }
 // Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
 // Valores para un husillo de docho milimetros de avance 16 micropasos
@@ -1233,6 +1233,7 @@
 // 1240, Resultados bastante buenos
 // Nominal a 32 micropasos 1380, en estas condiciones:
 // 95% = 1311, 90 % = 1242, 87,5 % = 1207,5, 85 % = 1173
+// Cambio a sinfín paso de 2 mm en lugar de 8, pasan los pasos de 400 a 1600
 
 /*
 Orbiter Extruder V1.5
