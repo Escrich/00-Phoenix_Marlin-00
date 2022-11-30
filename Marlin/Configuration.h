@@ -1222,7 +1222,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT            \
   {                                            \
-    100, 100, 400, 1240  \
+    100, 100, 400, 1208  \
   }
 // Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
 // Valores para un husillo de docho milimetros de avance 16 micropasos
@@ -1230,6 +1230,9 @@
 // 690 pasos, configuracion estandar para extrusora orbiter, yo siempre bajo un 5%, = 655.5
 // actuales 99.7781189, 98.7281815, 398.4283055, 638.25 Redondeo a dos decimales 99.78, 98.73, 398.43, 638.25 
 // Ultima hora 100, 100, 400, 620  antes de cambiar extrusora a 32 pasos
+// 1240, Resultados bastante buenos
+// Nominal a 32 micropasos 1380, en estas condiciones:
+// 95% = 1311, 90 % = 1242, 87,5 % = 1207,5, 85 % = 1173
 
 /*
 Orbiter Extruder V1.5

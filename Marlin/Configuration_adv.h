@@ -539,7 +539,7 @@
 #define CONTROLLERFAN_SPEED_MIN 0      // (0-255) Minimum speed. (If set below this value the fan is turned off.)
 #define CONTROLLERFAN_SPEED_ACTIVE 255 // (0-255) Active speed, used when any motor is enabled
 #define CONTROLLERFAN_SPEED_IDLE 0     // (0-255) Idle speed, used when motors are disabled
-#define CONTROLLERFAN_IDLE_TIME 20     // (seconds) Extra time to keep the fan running after disabling motors
+#define CONTROLLERFAN_IDLE_TIME 180     // (seconds) Extra time to keep the fan running after disabling motors, Ventilador placa 3 minutos extra
 
 // Use TEMP_SENSOR_BOARD as a trigger for enabling the controller fan
 //#define CONTROLLER_FAN_MIN_BOARD_TEMP 27  // (°C) Turn on the fan if the board reaches this temperature
