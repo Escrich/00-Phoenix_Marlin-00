@@ -561,7 +561,7 @@
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0 
 #define TEMP_SENSOR_COOLER 0
-#define TEMP_SENSOR_BOARD 5 // Sensor para poner el extractor en marcha
+#define TEMP_SENSOR_BOARD 00 //5 // Sensor para poner el extractor en marcha
 #define TEMP_SENSOR_REDUNDANT 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -790,8 +790,8 @@
 #define MAX_BED_POWER 255 // limits duty cycle to bed; 255=full current
 
 #if ENABLED(PIDTEMPBED)
-#define MIN_BED_POWER 0
-#define PID_BED_DEBUG // Print Bed PID debug data to the serial port.
+//#define MIN_BED_POWER 0
+//#define PID_BED_DEBUG // Print Bed PID debug data to the serial port.
 
 // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
 // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
@@ -831,7 +831,7 @@
  * When set to any value below 255, enables a form of PWM to the chamber heater that acts like a divider
  * so don't use it unless you are OK with PWM on your heater. (See the comment on enabling PIDTEMPCHAMBER)
  */
-#define MAX_CHAMBER_POWER 0 // limits duty cycle to chamber heater; 255=full current
+#define MAX_CHAMBER_POWER 255 // limits duty cycle to chamber heater; 255=full current
 
 #if ENABLED(PIDTEMPCHAMBER)
 #define MIN_CHAMBER_POWER 0
@@ -1222,7 +1222,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT            \
   {                                            \
-    100, 100, 1600, 1208  \
+    100, 100, 1600, 1240  \
   }
 // Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
 // Valores para un husillo de docho milimetros de avance 16 micropasos
@@ -1257,9 +1257,10 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    200, 200, 10, 50        \
+    300, 300, 9, 180        \
   } // Ajustadas conforme a Hypothetic  ////////--------------- Atención 50% mas de velocidad en Phoenix-------- antes 200, 200, 12, 60 Orbiter ----------------
 // Orbiter V1.5 Maximum speed: 3600 mm/min = 60 mm/sec
+//200, 200, 10, 50 
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1277,8 +1278,10 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    1000, 1000, 100, 400       \
+    1000, 1000, 100, 5000       \
   } // Valores en Hypothetic 1000, 1000, 100, 5000, Default 3000, 3000, 100, 600  
+
+//1000, 1000, 80, 400 antes de Nora
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1296,9 +1299,9 @@ Motor current: 0.5A Peak or 0.35A RMS
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION 1000         // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION 400 // E acceleration for retracts Orbiter retract speed
-#define DEFAULT_TRAVEL_ACCELERATION 1000  // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION 1250         // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION 1250 // E acceleration for retracts Orbiter retract speed
+#define DEFAULT_TRAVEL_ACCELERATION 1250  // X, Y, Z acceleration for travel (non printing) moves
 // all accelerations values on Anet were 1250
 /**
  * Default Jerk limits (mm/s)
@@ -1308,7 +1311,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-//#define CLASSIC_JERK
+#define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
 #define DEFAULT_XJERK 8   // 10.0
 #define DEFAULT_YJERK 8   // 10.0
@@ -1331,7 +1334,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #endif
 #endif
 
-#define DEFAULT_EJERK 5.0 // May be used by Linear Advance
+#define DEFAULT_EJERK 4.0 // May be used by Linear Advance, was 5
 
 /**
  * Junction Deviation Factor
@@ -1341,9 +1344,10 @@ Motor current: 0.5A Peak or 0.35A RMS
  *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
 #if DISABLED(CLASSIC_JERK)
-#define JUNCTION_DEVIATION_MM 0.013 // (mm) Distance from real junction edge
+#define JUNCTION_DEVIATION_MM 0.02 // (mm) Distance from real junction edge
 #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
                                     // for small segments (< 1mm) with large junction angles (> 135°).
+                                    // Was 0.013 before Nora
 #endif
 
 /**
@@ -1392,6 +1396,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 //#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default
 //#define Z_MIN_PROBE_PIN PC3 // PC3 es el inductivo en Anet Phoenix
+// Pin PB7 is the Octopus Probe pin 
 
 /**
  * Probe Type
@@ -1641,10 +1646,10 @@ Motor current: 0.5A Peak or 0.35A RMS
 #define PROBING_MARGIN 20
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE (133 * 60)
+#define XY_PROBE_FEEDRATE  (133 * 60) // (900) //  (133*60) = 7980 ; (60*60) = 3600 Nora
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_FEEDRATE_FAST (8 * 60)
+#define Z_PROBE_FEEDRATE_FAST (8 * 60) //(5*60)*4  // (5*60)*4 = 1200 ; (5*60)*3 = 900 Nora
 
 // Feedrate (mm/min) for the "accurate" probe of each point
 #define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
@@ -1844,17 +1849,19 @@ Motor current: 0.5A Peak or 0.35A RMS
 
 // @section geometry
 
+//                     ---------------------------------   Dimensiones Phoenix   -------------------------------------
+
 // The size of the printable area
 #define X_BED_SIZE 220
 #define Y_BED_SIZE 220
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
-#define X_MIN_POS -5 //  -------------------------- Medidos en maquina tras reforma ----------------------
-#define Y_MIN_POS -65
+#define X_MIN_POS -6 //  -------------------------- Medidos en maquina tras reforma ----------------------
+#define Y_MIN_POS -62
 #define Z_MIN_POS 0
 #define X_MAX_POS (X_BED_SIZE + 8)  // ------------ Limite total de X Phoenix despues de la reforma, añadiendo 8 mm. de margen a la derecha
 #define Y_MAX_POS (Y_BED_SIZE + 15) // ------------ Limite total de Y Phoenix despues de la reforma, añadiendo 15 mm. de margen al frente
-#define Z_MAX_POS (240 + 0)         // ------------ Max Z, no definido aun 20221123 
+#define Z_MAX_POS (240 + 0)         // ------------ Max Z, definido 20221130 
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
 //#define J_MIN_POS 0
@@ -2116,7 +2123,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 // Experimental Subdivision of the grid by Catmull-Rom method.
 // Synthesizes intermediate points to produce a more detailed mesh.
 //
-#define ABL_BILINEAR_SUBDIVISION // Repeticiones, probar si hay que activarlo de nuevo
+ #define ABL_BILINEAR_SUBDIVISION // Repeticiones, probar si hay que activarlo de nuevo Phoenix
 #if ENABLED(ABL_BILINEAR_SUBDIVISION)
 // Number of subdivisions between probe points
 #define BILINEAR_SUBDIVISIONS 3
@@ -2247,8 +2254,12 @@ Motor current: 0.5A Peak or 0.35A RMS
 #define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
-#define Z_SAFE_HOMING_X_POINT X_CENTER // X point for Z homing
-#define Z_SAFE_HOMING_Y_POINT Y_CENTER // Y point for Z homing
+//#define Z_SAFE_HOMING_X_POINT X_CENTER // X point for Z homing
+//#define Z_SAFE_HOMING_Y_POINT Y_CENTER // Y point for Z homing
+
+#define Z_SAFE_HOMING_X_POINT (110) // X point for Z homing
+#define Z_SAFE_HOMING_Y_POINT (110) // Y point for Z homing
+
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)

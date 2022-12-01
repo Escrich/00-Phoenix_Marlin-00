@@ -535,7 +535,7 @@
 #if ENABLED(USE_CONTROLLER_FAN)
 #define CONTROLLER_FAN_PIN FAN5_PIN   // Set a custom pin for the controller fan
 //#define CONTROLLER_FAN_USE_Z_ONLY       // With this option only the Z axis is considered
-#define CONTROLLER_FAN_IGNORE_Z        // Ignore Z stepper. Useful when stepper timeout is disabled.
+//#define CONTROLLER_FAN_IGNORE_Z        // Ignore Z stepper. Useful when stepper timeout is disabled.  Forzadom al ventilador siempre que haya un driver activo
 #define CONTROLLERFAN_SPEED_MIN 0      // (0-255) Minimum speed. (If set below this value the fan is turned off.)
 #define CONTROLLERFAN_SPEED_ACTIVE 255 // (0-255) Active speed, used when any motor is enabled
 #define CONTROLLERFAN_SPEED_IDLE 0     // (0-255) Idle speed, used when motors are disabled
@@ -1069,8 +1069,10 @@
 
 #define AXIS_RELATIVE_MODES    \
   {                            \
-    false, false, false, false \
+    false, false, false, true \
   }
+
+// Before Nora was false, false, false, false now false, false, false, true
 
 // Add a Duplicate option for well-separated conjoined nozzles
 //#define MULTI_NOZZLE_DUPLICATION
@@ -1095,7 +1097,7 @@
 #define DEFAULT_STEPPER_DEACTIVE_TIME 180 // it was 120  -------------------------
 #define DISABLE_INACTIVE_X true
 #define DISABLE_INACTIVE_Y true
-#define DISABLE_INACTIVE_Z false // Set 'false' if the nozzle could fall onto your printed part!
+#define DISABLE_INACTIVE_Z true // Set 'false' if the nozzle could fall onto your printed part! , Cambio para ventilador, z no se cae con un paso de 2 mm.
 #define DISABLE_INACTIVE_I true
 #define DISABLE_INACTIVE_J true
 #define DISABLE_INACTIVE_K true
@@ -1270,8 +1272,10 @@
 // Microstep settings (Requires a board with pins named X_MS1, X_MS2, etc.)
 #define MICROSTEP_MODES    \
   {                        \
-    16, 16, 16, 16, 32, 16 \
-  } // [1,2,4,8,16]  --------------------- Phoenix, chequear Ok
+    16, 16, 16, 32, 16, 16 \
+  } // [1,2,4,8,16,32,64, etc.]  --------------------- Phoenix, extrusora con 32 micropasos como en Prusa
+
+// 16, 16, 16, 16, 32, 16
 
 /**
  *  @section  stepper motor current
@@ -1293,7 +1297,7 @@
  *    M908 - BQ_ZUM_MEGA_3D, RAMBO, PRINTRBOARD_REVF, RIGIDBOARD_V2 & SCOOVO_X9H
  *    M909, M910 & LCD - only PRINTRBOARD_REVF & RIGIDBOARD_V2
  */
-#define PWM_MOTOR_CURRENT { 800, 800, 420, 420, 500 }          // Values in milliamps
+#define PWM_MOTOR_CURRENT { 800, 800, 750, 750, 500 }          // Values in milliamps
 //#define DIGIPOT_MOTOR_CURRENT { 135,135,135,135,135 }   // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
 //#define DAC_MOTOR_CURRENT_DEFAULT { 70, 80, 90, 80 }    // Default drive percent - X, Y, Z, E axis
 
@@ -1441,7 +1445,7 @@
 #define STATUS_MESSAGE_TIMEOUT_SEC 40 // (seconds)
 
 // On the Info Screen, display XY with one decimal place when possible
-//#define LCD_DECIMAL_SMALL_XY
+#//define LCD_DECIMAL_SMALL_XY
 
 // Add an 'M73' G-code to set the current percentage
 #define LCD_SET_PROGRESS_MANUALLY
@@ -2069,7 +2073,7 @@
 #if ENABLED(DOUBLECLICK_FOR_Z_BABYSTEPPING)
 #define DOUBLECLICK_MAX_INTERVAL 1250 // Maximum interval between clicks, in milliseconds.
                                       // Note: Extra time may be added to mitigate controller latency.
-//#define MOVE_Z_WHEN_IDLE              // Jump to the move Z menu on doubleclick when printer is idle.
+#define MOVE_Z_WHEN_IDLE              // Jump to the move Z menu on doubleclick when printer is idle.
 #if ENABLED(MOVE_Z_WHEN_IDLE)
 #define MOVE_Z_IDLE_MULTIPLICATOR 1 // Multiply 1mm by this factor for the move step size.
 #endif
@@ -2104,7 +2108,9 @@
 #define LIN_ADVANCE
 #if ENABLED(LIN_ADVANCE)
 //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
-#define LIN_ADVANCE_K 0.2 // Unit: mm compression per 1mm/s extruder speed Orbiter on Phoenix 0.2 instead of old 0.22
+#define LIN_ADVANCE_K 0.0 // Unit: mm compression per 1mm/s extruder speed Orbiter on Phoenix 0.2 instead of old 0.22
+// Before Nora 0.2
+
 //#define LA_DEBUG            // If enabled, this will generate debug information output over USB.
 #define EXPERIMENTAL_SCURVE // Enable this option to permit S-Curve Acceleration
 #define ALLOW_LOW_EJERK     // Allow a DEFAULT_EJERK value of <10. Recommended for direct drive hotends.
@@ -2653,12 +2659,12 @@
                                              //   For Bowden, the full length of the tube and nozzle.
                                              //   For direct drive, the full length of the nozzle.
                                              //   Set to 0 for manual unloading.
-#define FILAMENT_CHANGE_SLOW_LOAD_FEEDRATE 6 // (mm/s) Slow move when starting load.
-#define FILAMENT_CHANGE_SLOW_LOAD_LENGTH 10   // (mm) Slow length, to allow time to insert material.
+#define FILAMENT_CHANGE_SLOW_LOAD_FEEDRATE 2 // (mm/s) Slow move when starting load.
+#define FILAMENT_CHANGE_SLOW_LOAD_LENGTH 40   // (mm) Slow length, to allow time to insert material.
                                              // 0 to disable start loading and skip to fast load only
-#define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE 12 // (mm/s) Load filament feedrate. This can be pretty fast.
+#define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE 6 // (mm/s) Load filament feedrate. This can be pretty fast.
 #define FILAMENT_CHANGE_FAST_LOAD_ACCEL 25   // (mm/s^2) Lower acceleration may allow a faster feedrate.
-#define FILAMENT_CHANGE_FAST_LOAD_LENGTH 10   // (mm) Load length of filament, from extruder gear to nozzle.
+#define FILAMENT_CHANGE_FAST_LOAD_LENGTH 60   // (mm) Load length of filament, from extruder gear to nozzle.
                                              //   For Bowden, the full length of the tube and nozzle.
                                              //   For direct drive, the full length of the nozzle.
 //#define ADVANCED_PAUSE_CONTINUOUS_PURGE       // Purge continuously up to the purge length until interrupted.
@@ -2672,14 +2678,14 @@
 
 // Filament Unload does a Retract, Delay, and Purge first:
 #define FILAMENT_UNLOAD_PURGE_RETRACT 2  // (mm) Unload initial retract length.
-#define FILAMENT_UNLOAD_PURGE_DELAY 3000  // (ms) Delay for the filament to cool after retract.
+#define FILAMENT_UNLOAD_PURGE_DELAY 5000  // (ms) Delay for the filament to cool after retract.
 #define FILAMENT_UNLOAD_PURGE_LENGTH 8    // (mm) An unretract is done, then this length is purged.
 #define FILAMENT_UNLOAD_PURGE_FEEDRATE 25 // (mm/s) feedrate to purge before unload
 
 #define PAUSE_PARK_NOZZLE_TIMEOUT 180   // (seconds) Time limit before the nozzle is turned off for safety.
 #define FILAMENT_CHANGE_ALERT_BEEPS 15 // Number of alert beeps to play when a response is needed.
 #define PAUSE_PARK_NO_STEPPER_TIMEOUT  // Enable for XYZ steppers to stay powered on during filament change.
-//#define FILAMENT_CHANGE_RESUME_ON_INSERT      // Automatically continue / load filament when runout sensor is triggered again.
+#define FILAMENT_CHANGE_RESUME_ON_INSERT      // Automatically continue / load filament when runout sensor is triggered again.
 //#define PAUSE_REHEAT_FAST_RESUME              // Reduce number of waits by not prompting again post-timeout before continuing.
 
 #define PARK_HEAD_ON_PAUSE                    // Park the nozzle during pause and filament change.
@@ -2862,7 +2868,7 @@
 #define INTERPOLATE true
 
 #if AXIS_IS_TMC(X)
-#define X_CURRENT 750            // (mA) RMS current. Multiply by 1.414 for peak current.
+#define X_CURRENT 800            // (mA) RMS current. Multiply by 1.414 for peak current.
 #define X_CURRENT_HOME X_CURRENT // (mA) RMS current for sensorless homing
 #define X_MICROSTEPS 16          // 0..256
 #define X_RSENSE 0.11
@@ -2882,7 +2888,7 @@
 #endif
 
 #if AXIS_IS_TMC(Y)
-#define Y_CURRENT 750
+#define Y_CURRENT 800
 #define Y_CURRENT_HOME Y_CURRENT
 #define Y_MICROSTEPS 16
 #define Y_RSENSE 0.11
@@ -2902,9 +2908,9 @@
 #endif
 
 #if AXIS_IS_TMC(Z)
-#define Z_CURRENT 750
+#define Z_CURRENT 800
 #define Z_CURRENT_HOME Z_CURRENT
-#define Z_MICROSTEPS 16  // was 16 before, Change here too if screw advance changes, Phoenix
+#define Z_MICROSTEPS 16  // was 16 before, Change here too if screw advance changes, Phoenix pasos eje z
 #define Z_RSENSE 0.11
 #define Z_CHAIN_POS -1
 //#define Z_INTERPOLATE  true
@@ -2912,7 +2918,7 @@
 #endif
 
 #if AXIS_IS_TMC(Z2)
-#define Z2_CURRENT 750
+#define Z2_CURRENT 800
 #define Z2_CURRENT_HOME Z2_CURRENT
 #define Z2_MICROSTEPS Z_MICROSTEPS
 #define Z2_RSENSE 0.11
@@ -3002,7 +3008,7 @@
 #endif
 
 #if AXIS_IS_TMC(E0)
-#define E0_CURRENT 350 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
+#define E0_CURRENT 600 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
 #define E0_MICROSTEPS 32 // Ojo, cambiado a 32 micro pasos en extrusora como lo hace Prusa
 #define E0_RSENSE 0.11
 #define E0_CHAIN_POS -1
