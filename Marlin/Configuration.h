@@ -688,10 +688,10 @@
     114.00, 114.00      \
   }
 #else
-// Phoenix Autotune PID results real ones ------------- 20221127
-#define DEFAULT_Kp 26.5
-#define DEFAULT_Ki 1.96
-#define DEFAULT_Kd 89.5
+// Phoenix Autotune PID results real ones ------------- 20221202
+#define DEFAULT_Kp 20.3
+#define DEFAULT_Ki 1.29
+#define DEFAULT_Kd 80.1
 #endif
 #endif
 
@@ -1313,9 +1313,9 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-#define DEFAULT_XJERK 8   // 10.0
-#define DEFAULT_YJERK 8   // 10.0
-#define DEFAULT_ZJERK 0.4 // 0.3
+#define DEFAULT_XJERK 10 // 8   // 10.0
+#define DEFAULT_YJERK 10 // 8   // 10.0
+#define DEFAULT_ZJERK 0.6 // 0.4 // 0.3
 //#define DEFAULT_IJERK  0.3
 //#define DEFAULT_JJERK  0.3
 //#define DEFAULT_KJERK  0.3
@@ -1323,7 +1323,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 //#define DEFAULT_VJERK  0.3
 //#define DEFAULT_WJERK  0.3
 
-//#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
+#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
 
 //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
 #if ENABLED(LIMITED_JERK_EDITING)
@@ -1334,7 +1334,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #endif
 #endif
 
-#define DEFAULT_EJERK 4.0 // May be used by Linear Advance, was 5
+#define DEFAULT_EJERK 5 // 4.0 // May be used by Linear Advance, was 5
 
 /**
  * Junction Deviation Factor
