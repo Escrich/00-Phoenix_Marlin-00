@@ -535,7 +535,7 @@
 #if ENABLED(USE_CONTROLLER_FAN)
 #define CONTROLLER_FAN_PIN FAN5_PIN   // Set a custom pin for the controller fan
 //#define CONTROLLER_FAN_USE_Z_ONLY       // With this option only the Z axis is considered
-//#define CONTROLLER_FAN_IGNORE_Z        // Ignore Z stepper. Useful when stepper timeout is disabled.  Forzadom al ventilador siempre que haya un driver activo
+#define CONTROLLER_FAN_IGNORE_Z        // Ignore Z stepper. Useful when stepper timeout is disabled.  Forzado al ventilador siempre que haya un driver activo
 #define CONTROLLERFAN_SPEED_MIN 0      // (0-255) Minimum speed. (If set below this value the fan is turned off.)
 #define CONTROLLERFAN_SPEED_ACTIVE 255 // (0-255) Active speed, used when any motor is enabled
 #define CONTROLLERFAN_SPEED_IDLE 0     // (0-255) Idle speed, used when motors are disabled
@@ -614,7 +614,7 @@
 /**
  * Use one of the PWM fans as a redundant part-cooling fan
  */
-//#define REDUNDANT_PART_COOLING_FAN 2  // Index of the fan to sync with FAN 0.
+#define REDUNDANT_PART_COOLING_FAN 4  // Index of the fan to sync with FAN 0. Ventilador redundante conectado al extractor
 
 // @section extruder
 
@@ -640,7 +640,7 @@
 #define E7_AUTO_FAN_PIN -1
 #define CHAMBER_AUTO_FAN_PIN -1 // Ventilador Chamber
 #define COOLER_AUTO_FAN_PIN -1
-#define BOARD_AUTO_FAN_PIN FAN4_PIN // Ventilador placa
+#define BOARD_AUTO_FAN_PIN -1 // Ventilador placa
 
 
 #define EXTRUDER_AUTO_FAN_TEMPERATURE 50
@@ -1297,7 +1297,7 @@
  *    M908 - BQ_ZUM_MEGA_3D, RAMBO, PRINTRBOARD_REVF, RIGIDBOARD_V2 & SCOOVO_X9H
  *    M909, M910 & LCD - only PRINTRBOARD_REVF & RIGIDBOARD_V2
  */
-#define PWM_MOTOR_CURRENT { 800, 800, 750, 750, 500 }          // Values in milliamps
+#define PWM_MOTOR_CURRENT { 750, 750, 650, 650, 450 }          // Values in milliamps
 //#define DIGIPOT_MOTOR_CURRENT { 135,135,135,135,135 }   // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
 //#define DAC_MOTOR_CURRENT_DEFAULT { 70, 80, 90, 80 }    // Default drive percent - X, Y, Z, E axis
 
@@ -2868,7 +2868,7 @@
 #define INTERPOLATE true
 
 #if AXIS_IS_TMC(X)
-#define X_CURRENT 800            // (mA) RMS current. Multiply by 1.414 for peak current.
+#define X_CURRENT 750            // (mA) RMS current. Multiply by 1.414 for peak current.
 #define X_CURRENT_HOME X_CURRENT // (mA) RMS current for sensorless homing
 #define X_MICROSTEPS 16          // 0..256
 #define X_RSENSE 0.11
@@ -2888,7 +2888,7 @@
 #endif
 
 #if AXIS_IS_TMC(Y)
-#define Y_CURRENT 800
+#define Y_CURRENT 750
 #define Y_CURRENT_HOME Y_CURRENT
 #define Y_MICROSTEPS 16
 #define Y_RSENSE 0.11
@@ -2908,7 +2908,7 @@
 #endif
 
 #if AXIS_IS_TMC(Z)
-#define Z_CURRENT 800
+#define Z_CURRENT 650
 #define Z_CURRENT_HOME Z_CURRENT
 #define Z_MICROSTEPS 16  // was 16 before, Change here too if screw advance changes, Phoenix pasos eje z
 #define Z_RSENSE 0.11
@@ -2918,7 +2918,7 @@
 #endif
 
 #if AXIS_IS_TMC(Z2)
-#define Z2_CURRENT 800
+#define Z2_CURRENT 650
 #define Z2_CURRENT_HOME Z2_CURRENT
 #define Z2_MICROSTEPS Z_MICROSTEPS
 #define Z2_RSENSE 0.11
@@ -3008,7 +3008,7 @@
 #endif
 
 #if AXIS_IS_TMC(E0)
-#define E0_CURRENT 600 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
+#define E0_CURRENT 450 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
 #define E0_MICROSTEPS 32 // Ojo, cambiado a 32 micro pasos en extrusora como lo hace Prusa
 #define E0_RSENSE 0.11
 #define E0_CHAIN_POS -1
