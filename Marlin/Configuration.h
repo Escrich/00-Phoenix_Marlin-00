@@ -561,7 +561,7 @@
 #define TEMP_SENSOR_PROBE 0
 #define TEMP_SENSOR_CHAMBER 0 
 #define TEMP_SENSOR_COOLER 0
-#define TEMP_SENSOR_BOARD 00 //5 // Sensor para poner el extractor en marcha
+#define TEMP_SENSOR_BOARD 0 //5 // Sensor para poner el extractor en marcha
 #define TEMP_SENSOR_REDUNDANT 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
@@ -1176,7 +1176,7 @@
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
-#define ENDSTOP_INTERRUPTS_FEATURE
+#define ENDSTOP_INTERRUPTS_FEATURE  // Cambiado 20221202 Phoenix // Funciona sin rallas con esto desactivado
 
 /**
  * Endstop Noise Threshold
@@ -1222,7 +1222,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT            \
   {                                            \
-    100, 100, 1600, 1240  \
+    100, 100, 400, 1240  \
   }
 // Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
 // Valores para un husillo de docho milimetros de avance 16 micropasos
@@ -1234,6 +1234,8 @@
 // Nominal a 32 micropasos 1380, en estas condiciones:
 // 95% = 1311, 90 % = 1242, 87,5 % = 1207,5, 85 % = 1173
 // Cambio a sinfín paso de 2 mm en lugar de 8, pasan los pasos de 400 a 1600
+// 
+// Funciona sin rallas con estos valores 100, 100, 400, 1240
 
 /*
 Orbiter Extruder V1.5
@@ -1257,10 +1259,13 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    300, 300, 9, 180        \
+    300, 300, 8, 4        \
   } // Ajustadas conforme a Hypothetic  ////////--------------- Atención 50% mas de velocidad en Phoenix-------- antes 200, 200, 12, 60 Orbiter ----------------
 // Orbiter V1.5 Maximum speed: 3600 mm/min = 60 mm/sec
 //200, 200, 10, 50 
+
+// Funciona sin rallas con estos valores 300, 300, 8, 4  
+
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1278,10 +1283,11 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    1000, 1000, 100, 5000       \
+    500, 500, 100, 100       \
   } // Valores en Hypothetic 1000, 1000, 100, 5000, Default 3000, 3000, 100, 600  
 
 //1000, 1000, 80, 400 antes de Nora
+// Funciona sin rallas con estos valores 500, 500, 100, 100  
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1299,10 +1305,13 @@ Motor current: 0.5A Peak or 0.35A RMS
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION 1250         // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION 1250 // E acceleration for retracts Orbiter retract speed
-#define DEFAULT_TRAVEL_ACCELERATION 1250  // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION 500         // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION 500 // E acceleration for retracts Orbiter retract speed
+#define DEFAULT_TRAVEL_ACCELERATION 500  // X, Y, Z acceleration for travel (non printing) moves
 // all accelerations values on Anet were 1250
+
+// Funciona sin rallas con estos valores 500 , 500, 500
+
 /**
  * Default Jerk limits (mm/s)
  * Override with M205 X Y Z . . . E
@@ -1313,9 +1322,12 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-#define DEFAULT_XJERK 10 // 8   // 10.0
-#define DEFAULT_YJERK 10 // 8   // 10.0
-#define DEFAULT_ZJERK 0.6 // 0.4 // 0.3
+#define DEFAULT_XJERK 8 // 8   // 10.0
+#define DEFAULT_YJERK 8 // 8   // 10.0
+#define DEFAULT_ZJERK 0.3 // 0.4 // 0.3
+
+// Funciona sin rallas con estos valores 8,8,0.3
+
 //#define DEFAULT_IJERK  0.3
 //#define DEFAULT_JJERK  0.3
 //#define DEFAULT_KJERK  0.3
@@ -1334,7 +1346,8 @@ Motor current: 0.5A Peak or 0.35A RMS
 #endif
 #endif
 
-#define DEFAULT_EJERK 5 // 4.0 // May be used by Linear Advance, was 5
+#define DEFAULT_EJERK 4 // 4.0 // May be used by Linear Advance, was 5
+// Funciona sin rallas con estos valores 4
 
 /**
  * Junction Deviation Factor
@@ -2267,6 +2280,8 @@ Motor current: 0.5A Peak or 0.35A RMS
   {                                \
     (50 * 60), (50 * 60), (8 * 60) \
   }
+
+  // Funciona sin rallas con estos valores (50 * 60), (50 * 60), (8 * 60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS

@@ -535,7 +535,7 @@
 #if ENABLED(USE_CONTROLLER_FAN)
 #define CONTROLLER_FAN_PIN FAN5_PIN   // Set a custom pin for the controller fan
 //#define CONTROLLER_FAN_USE_Z_ONLY       // With this option only the Z axis is considered
-#define CONTROLLER_FAN_IGNORE_Z        // Ignore Z stepper. Useful when stepper timeout is disabled.  Forzado al ventilador siempre que haya un driver activo
+//#define CONTROLLER_FAN_IGNORE_Z        // Ignore Z stepper. Useful when stepper timeout is disabled.  Forzado al ventilador siempre que haya un driver activo
 #define CONTROLLERFAN_SPEED_MIN 0      // (0-255) Minimum speed. (If set below this value the fan is turned off.)
 #define CONTROLLERFAN_SPEED_ACTIVE 255 // (0-255) Active speed, used when any motor is enabled
 #define CONTROLLERFAN_SPEED_IDLE 0     // (0-255) Idle speed, used when motors are disabled
@@ -1074,6 +1074,8 @@
 
 // Before Nora was false, false, false, false now false, false, false, true
 
+// Funciona sin rallas con estos valores false, false, false, true
+
 // Add a Duplicate option for well-separated conjoined nozzles
 //#define MULTI_NOZZLE_DUPLICATION
 
@@ -1276,6 +1278,7 @@
   } // [1,2,4,8,16,32,64, etc.]  --------------------- Phoenix, extrusora con 32 micropasos como en Prusa
 
 // 16, 16, 16, 16, 32, 16
+// Funciona sin rallas con estos valores 16, 16, 16, 32, 16, 16
 
 /**
  *  @section  stepper motor current
@@ -1300,6 +1303,9 @@
 #define PWM_MOTOR_CURRENT { 750, 750, 650, 650, 450 }          // Values in milliamps
 //#define DIGIPOT_MOTOR_CURRENT { 135,135,135,135,135 }   // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
 //#define DAC_MOTOR_CURRENT_DEFAULT { 70, 80, 90, 80 }    // Default drive percent - X, Y, Z, E axis
+
+// Funciona sin rallas con estos valores  750, 750, 650, 650, 450 }
+
 
 /**
  * I2C-based DIGIPOTs (e.g., Azteeg X3 Pro)
@@ -1349,6 +1355,9 @@
 #define ULTIPANEL_FEEDMULTIPLY  // Encoder sets the feedrate multiplier on the Status Screen
 #endif
 #endif
+
+// Funciona sin rallas con estos valores 50 * 60, 50 * 60, 4 * 60, 2 * 60 
+
 
 // Change values more rapidly when the encoder is rotated faster
 #define ENCODER_RATE_MULTIPLIER
@@ -2910,12 +2919,15 @@
 #if AXIS_IS_TMC(Z)
 #define Z_CURRENT 650
 #define Z_CURRENT_HOME Z_CURRENT
-#define Z_MICROSTEPS 16  // was 16 before, Change here too if screw advance changes, Phoenix pasos eje z
+#define Z_MICROSTEPS 16  // was 16 before, Change here too if screw advance changes, Phoenix pasos eje z // Funciona sin rallas con estos valores 16 y 650
 #define Z_RSENSE 0.11
 #define Z_CHAIN_POS -1
 //#define Z_INTERPOLATE  true
 //#define Z_HOLD_MULTIPLIER 0.5
 #endif
+
+// Funciona sin rallas con estos valores 16 y 650
+
 
 #if AXIS_IS_TMC(Z2)
 #define Z2_CURRENT 650
@@ -3009,12 +3021,14 @@
 
 #if AXIS_IS_TMC(E0)
 #define E0_CURRENT 450 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
-#define E0_MICROSTEPS 32 // Ojo, cambiado a 32 micro pasos en extrusora como lo hace Prusa
+#define E0_MICROSTEPS 32 // Ojo, cambiado a 32 micro pasos en extrusora como lo hace Prusa 
 #define E0_RSENSE 0.11
 #define E0_CHAIN_POS -1
 //#define E0_INTERPOLATE true
 //#define E0_HOLD_MULTIPLIER 0.5
 #endif
+
+// Funciona sin rallas con estos valores 32 y 450 en corriente
 
 #if AXIS_IS_TMC(E1)
 #define E1_CURRENT 800
