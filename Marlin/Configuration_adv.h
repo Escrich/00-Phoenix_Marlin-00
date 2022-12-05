@@ -1842,7 +1842,7 @@
 #define STATUS_ALT_FAN_BITMAP // Use the alternative fan bitmap
 #define STATUS_FAN_FRAMES 4   // :[0,1,2,3,4] Number of fan animation frames
 #define STATUS_HEAT_PERCENT   // Show heating in a progress bar
-#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~3260 (or ~940) bytes of flash.
+//#define BOOT_MARLIN_LOGO_ANIMATED // Animated Marlin logo. Costs ~3260 (or ~940) bytes of flash.
 
 // Frivolous Game Options
 //#define MARLIN_BRICKOUT
@@ -2119,8 +2119,9 @@
 #define LIN_ADVANCE
 #if ENABLED(LIN_ADVANCE)
 //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
-#define LIN_ADVANCE_K 0.0 // Unit: mm compression per 1mm/s extruder speed Orbiter on Phoenix 0.2 instead of old 0.22
-// Before Nora 0.2 after Nora 0.0
+#define LIN_ADVANCE_K 0.0375 // Unit: mm compression per 1mm/s extruder speed Orbiter on Phoenix 0.2 instead of old 0.22
+// Before Nora 0.2 after Nora 0.0 
+// Valor hallado experimentalmente 0.0375, no cambiar por otro, la maquina va bien con valores cercanos a cero 20221205
 
 //#define LA_DEBUG            // If enabled, this will generate debug information output over USB.
 #define EXPERIMENTAL_SCURVE // Enable this option to permit S-Curve Acceleration
@@ -2425,13 +2426,13 @@
 // For debug-echo: 128 bytes for the optimal speed.
 // Other output doesn't need to be that speedy.
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256]
-#define TX_BUFFER_SIZE 256
+#define TX_BUFFER_SIZE 128
 
 // Host Receive Buffer Size
 // Without XON/XOFF flow control (see SERIAL_XON_XOFF below) 32 bytes should be enough.
 // To use flow control, set this buffer size to at least 1024 bytes.
 // :[0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
-#define RX_BUFFER_SIZE 2048
+#define RX_BUFFER_SIZE 32
 
 #if RX_BUFFER_SIZE >= 1024
 // Enable to have the controller send XON/XOFF control characters to
@@ -2489,10 +2490,10 @@
 // Therefore some clients abort after 30 seconds in a timeout.
 // Some other clients start sending commands while receiving a 'wait'.
 // This "wait" is only sent when the buffer is empty. 1 second is a good value here.
-#define NO_TIMEOUTS 1000 // Milliseconds chequear Phoenix
+//#define NO_TIMEOUTS 15000 // Milliseconds chequear Phoenix
 
 // Some clients will have this feature soon. This could make the NO_TIMEOUTS unnecessary.
-#define ADVANCED_OK // chequear Phoenix
+//#define ADVANCED_OK // chequear Phoenix
 
 // Printrun may have trouble receiving long strings all at once.
 // This option inserts short delays between lines of serial output.
@@ -2689,7 +2690,7 @@
 
 // Filament Unload does a Retract, Delay, and Purge first:
 #define FILAMENT_UNLOAD_PURGE_RETRACT 2  // (mm) Unload initial retract length.
-#define FILAMENT_UNLOAD_PURGE_DELAY 5000  // (ms) Delay for the filament to cool after retract.
+#define FILAMENT_UNLOAD_PURGE_DELAY 0 // 5000  // (ms) Delay for the filament to cool after retract. Phoenix
 #define FILAMENT_UNLOAD_PURGE_LENGTH 8    // (mm) An unretract is done, then this length is purged.
 #define FILAMENT_UNLOAD_PURGE_FEEDRATE 25 // (mm/s) feedrate to purge before unload
 
@@ -3826,7 +3827,7 @@
 // Extra options for the M114 "Current Position" report
 #define M114_DETAIL         // Use 'M114` for details to check planner calculations
 //#define M114_REALTIME       // Real current position based on forward kinematics
-#define M114_LEGACY         // M114 used to synchronize on every call. Enable if needed. ------------ Phoenix
+// #define M114_LEGACY         // M114 used to synchronize on every call. Enable if needed. ------------ Phoenix
 
 #define REPORT_FAN_CHANGE   // Report the new fan speed when changed by M106 (and others)
 
@@ -3838,7 +3839,7 @@
 #define FASTER_GCODE_PARSER
 
 #if ENABLED(FASTER_GCODE_PARSER)
-//#define GCODE_QUOTED_STRINGS  // Support for quoted string parameters
+#define GCODE_QUOTED_STRINGS  // Support for quoted string parameters
 #endif
 
 // Support for MeatPack G-code compression (https://github.com/scottmudge/OctoPrint-MeatPack)
@@ -3856,7 +3857,7 @@
  *  - M206 and M428 are disabled.
  *  - G92 will revert to its behavior from Marlin 1.0.
  */
-//#define NO_WORKSPACE_OFFSETS
+#define NO_WORKSPACE_OFFSETS
 
 /**
  * CNC G-code options
@@ -3888,7 +3889,7 @@
  * Add G-codes M810-M819 to define and run G-code macros.
  * Macros are not saved to EEPROM.
  */
-//#define GCODE_MACROS
+#define GCODE_MACROS
 #if ENABLED(GCODE_MACROS)
 #define GCODE_MACROS_SLOTS 5      // Up to 10 may be used
 #define GCODE_MACROS_SLOT_SIZE 50 // Maximum length of a single macro

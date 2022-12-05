@@ -689,9 +689,9 @@
   }
 #else
 // Phoenix Autotune PID results real ones ------------- 20221202
-#define DEFAULT_Kp 20.3
-#define DEFAULT_Ki 1.29
-#define DEFAULT_Kd 80.1
+#define DEFAULT_Kp 21.7
+#define DEFAULT_Ki 1.41
+#define DEFAULT_Kd 83.4
 #endif
 #endif
 
@@ -1305,9 +1305,9 @@ Motor current: 0.5A Peak or 0.35A RMS
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION 1250         // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION 1500         // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION 500 // E acceleration for retracts Orbiter retract speed
-#define DEFAULT_TRAVEL_ACCELERATION 1250  // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION 1500  // X, Y, Z acceleration for travel (non printing) moves
 // all accelerations values on Anet were 1250
 
 // Funciona sin rallas con estos valores 500 , 500, 500
