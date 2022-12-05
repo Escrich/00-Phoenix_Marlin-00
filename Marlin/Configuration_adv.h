@@ -886,8 +886,10 @@
     2, 2, 4                 \
   } // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
-#define HOMING_BACKOFF_POST_MM { 25, 25, 25 }  // (linear=mm, rotational=°) Backoff from endstops after homing
+#define HOMING_BACKOFF_POST_MM { 25, 60, 25 }  // (linear=mm, rotational=°) Backoff from endstops after homing
 // Originally all values were 2
+//  25, 25, 25 
+
 
 #define QUICK_HOME                          // If G28 contains XY do a diagonal move first
 #define HOME_Y_BEFORE_X                     // If G28 contains XY home Y before X
@@ -1001,7 +1003,7 @@
  *               | 1   2 | 2   3 | 3   4 | 4   1 |
  */
 #ifndef Z_STEPPER_ALIGN_XY
-//#define Z_STEPPERS_ORIENTATION 0
+#define Z_STEPPERS_ORIENTATION 0  // Chnged at Phoenix on 20221203, (uncommented)
 #endif
 
 /**
@@ -1069,7 +1071,7 @@
 
 #define AXIS_RELATIVE_MODES    \
   {                            \
-    false, false, false, true \
+    false, false, false, false \
   }
 
 // Before Nora was false, false, false, false now false, false, false, true
@@ -1367,7 +1369,7 @@
 #endif
 
 // Play a beep when the feedrate is changed from the Status Screen
-//#define BEEP_ON_FEEDRATE_CHANGE
+#define BEEP_ON_FEEDRATE_CHANGE
 #if ENABLED(BEEP_ON_FEEDRATE_CHANGE)
 #define FEEDRATE_CHANGE_BEEP_DURATION 10
 #define FEEDRATE_CHANGE_BEEP_FREQUENCY 440
@@ -1738,7 +1740,7 @@
  *
  * :[ 'LCD', 'ONBOARD', 'CUSTOM_CABLE' ]
  */
-#define SDCARD_CONNECTION ONBOARD
+#define SDCARD_CONNECTION ONBOARD // Necesario para Phoenix
 
 // Enable if SD detect is rendered useless (e.g., by using an SD extender)
 //#define NO_SD_DETECT
@@ -2118,7 +2120,7 @@
 #if ENABLED(LIN_ADVANCE)
 //#define EXTRA_LIN_ADVANCE_K // Enable for second linear advance constants
 #define LIN_ADVANCE_K 0.0 // Unit: mm compression per 1mm/s extruder speed Orbiter on Phoenix 0.2 instead of old 0.22
-// Before Nora 0.2
+// Before Nora 0.2 after Nora 0.0
 
 //#define LA_DEBUG            // If enabled, this will generate debug information output over USB.
 #define EXPERIMENTAL_SCURVE // Enable this option to permit S-Curve Acceleration
@@ -2694,7 +2696,7 @@
 #define PAUSE_PARK_NOZZLE_TIMEOUT 180   // (seconds) Time limit before the nozzle is turned off for safety.
 #define FILAMENT_CHANGE_ALERT_BEEPS 15 // Number of alert beeps to play when a response is needed.
 #define PAUSE_PARK_NO_STEPPER_TIMEOUT  // Enable for XYZ steppers to stay powered on during filament change.
-#define FILAMENT_CHANGE_RESUME_ON_INSERT      // Automatically continue / load filament when runout sensor is triggered again.
+//#define FILAMENT_CHANGE_RESUME_ON_INSERT      // Automatically continue / load filament when runout sensor is triggered again.
 //#define PAUSE_REHEAT_FAST_RESUME              // Reduce number of waits by not prompting again post-timeout before continuing.
 
 #define PARK_HEAD_ON_PAUSE                    // Park the nozzle during pause and filament change.
@@ -4418,7 +4420,7 @@
 #define PINS_DEBUGGING
 
 // Enable Tests that will run at startup and produce a report
-#define MARLIN_TEST_BUILD // Chequear Phoenix
+//#define MARLIN_TEST_BUILD // Chequear Phoenix
 
 // Enable Marlin dev mode which adds some special commands
 //#define MARLIN_DEV_MODE

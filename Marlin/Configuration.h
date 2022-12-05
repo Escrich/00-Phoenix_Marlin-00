@@ -1259,7 +1259,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    300, 300, 8, 4        \
+    350, 350, 12, 50        \
   } // Ajustadas conforme a Hypothetic  ////////--------------- Atención 50% mas de velocidad en Phoenix-------- antes 200, 200, 12, 60 Orbiter ----------------
 // Orbiter V1.5 Maximum speed: 3600 mm/min = 60 mm/sec
 //200, 200, 10, 50 
@@ -1283,7 +1283,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    500, 500, 100, 100       \
+    1500, 1500, 100, 500       \
   } // Valores en Hypothetic 1000, 1000, 100, 5000, Default 3000, 3000, 100, 600  
 
 //1000, 1000, 80, 400 antes de Nora
@@ -1305,9 +1305,9 @@ Motor current: 0.5A Peak or 0.35A RMS
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION 500         // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION 1250         // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION 500 // E acceleration for retracts Orbiter retract speed
-#define DEFAULT_TRAVEL_ACCELERATION 500  // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_TRAVEL_ACCELERATION 1250  // X, Y, Z acceleration for travel (non printing) moves
 // all accelerations values on Anet were 1250
 
 // Funciona sin rallas con estos valores 500 , 500, 500
@@ -1408,8 +1408,8 @@ Motor current: 0.5A Peak or 0.35A RMS
  *      - normally-open switches to 5V and D32.
  */
 //#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default
-//#define Z_MIN_PROBE_PIN PC3 // PC3 es el inductivo en Anet Phoenix
-// Pin PB7 is the Octopus Probe pin 
+//#define Z_MIN_PROBE_PIN PC3 // PC3 es el inductivo en Anet
+// Pin PB7 is the Octopus Probe pin Phoenix
 
 /**
  * Probe Type
@@ -2053,8 +2053,8 @@ Motor current: 0.5A Peak or 0.35A RMS
  * these options to restore the prior leveling state or to always enable
  * leveling immediately after G28.
  */
-//#define RESTORE_LEVELING_AFTER_G28
-#define ENABLE_LEVELING_AFTER_G28
+#define RESTORE_LEVELING_AFTER_G28
+//#define ENABLE_LEVELING_AFTER_G28
 
 /**
  * Auto-leveling needs preheating
@@ -2079,7 +2079,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  * Turn on with the command 'M111 S32'.
  * NOTE: Requires a lot of PROGMEM!
  */
-#define DEBUG_LEVELING_FEATURE
+//#define DEBUG_LEVELING_FEATURE
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL, PROBE_MANUALLY)
 // Set a height for the start of manual adjustment
@@ -2421,7 +2421,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #define PREHEAT_5_TEMP_BED 110
 #define PREHEAT_5_FAN_SPEED 0 // Value from 0 to 255 for Layer Fan
 
-#define PREHEAT_6_LABEL "Boquilla"
+#define PREHEAT_6_LABEL "CLEANING"
 #define PREHEAT_6_TEMP_HOTEND 250
 #define PREHEAT_6_TEMP_BED 0
 #define PREHEAT_6_FAN_SPEED 0 // Value from 0 to 255 for Layer Fan
@@ -2946,7 +2946,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER // Si usas el display TFT24-V1.1, esta es la definición correcta
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER // Si usas el display TFT24-V1.1, esta es la definición correcta Hypothetic o Phoenix
 
 //
 // K.3D Full Graphic Smart Controller
