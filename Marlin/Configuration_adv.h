@@ -1076,7 +1076,7 @@
 
 // Before Nora was false, false, false, false now false, false, false, true
 
-// Funciona sin rallas con estos valores false, false, false, true
+// Funciona sin rayas con estos valores false, false, false, true
 
 // Add a Duplicate option for well-separated conjoined nozzles
 //#define MULTI_NOZZLE_DUPLICATION
@@ -1280,7 +1280,7 @@
   } // [1,2,4,8,16,32,64, etc.]  --------------------- Phoenix, extrusora con 32 micropasos como en Prusa
 
 // 16, 16, 16, 16, 32, 16
-// Funciona sin rallas con estos valores 16, 16, 16, 32, 16, 16
+// Funciona sin rayas con estos valores 16, 16, 16, 32, 16, 16
 
 /**
  *  @section  stepper motor current
@@ -1302,11 +1302,11 @@
  *    M908 - BQ_ZUM_MEGA_3D, RAMBO, PRINTRBOARD_REVF, RIGIDBOARD_V2 & SCOOVO_X9H
  *    M909, M910 & LCD - only PRINTRBOARD_REVF & RIGIDBOARD_V2
  */
-#define PWM_MOTOR_CURRENT { 750, 750, 650, 650, 450 }          // Values in milliamps
+#define PWM_MOTOR_CURRENT { 750, 750, 650, 650, 500 }          // Values in milliamps
 //#define DIGIPOT_MOTOR_CURRENT { 135,135,135,135,135 }   // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
 //#define DAC_MOTOR_CURRENT_DEFAULT { 70, 80, 90, 80 }    // Default drive percent - X, Y, Z, E axis
 
-// Funciona sin rallas con estos valores  750, 750, 650, 650, 450 }
+// Funciona sin rayas con estos valores  750, 750, 650, 650, 450 }
 
 
 /**
@@ -1358,7 +1358,7 @@
 #endif
 #endif
 
-// Funciona sin rallas con estos valores 50 * 60, 50 * 60, 4 * 60, 2 * 60 
+// Funciona sin rayas con estos valores 50 * 60, 50 * 60, 4 * 60, 2 * 60 
 
 
 // Change values more rapidly when the encoder is rotated faster
@@ -2665,23 +2665,23 @@
 #define PAUSE_PARK_RETRACT_FEEDRATE 60       // (mm/s) Initial retract feedrate.
 #define PAUSE_PARK_RETRACT_LENGTH 3          // (mm) Initial retract.
                                              // This short retract is done immediately, before parking the nozzle.
-#define FILAMENT_CHANGE_UNLOAD_FEEDRATE 20   // (mm/s) Unload filament feedrate. This can be pretty fast.
+#define FILAMENT_CHANGE_UNLOAD_FEEDRATE 60   // 20   // (mm/s) Unload filament feedrate. This can be pretty fast.
 #define FILAMENT_CHANGE_UNLOAD_ACCEL 25      // (mm/s^2) Lower acceleration may allow a faster feedrate.
 #define FILAMENT_CHANGE_UNLOAD_LENGTH 150    // (mm) The length of filament for a complete unload.
                                              //   For Bowden, the full length of the tube and nozzle.
                                              //   For direct drive, the full length of the nozzle.
                                              //   Set to 0 for manual unloading.
 #define FILAMENT_CHANGE_SLOW_LOAD_FEEDRATE 2 // (mm/s) Slow move when starting load.
-#define FILAMENT_CHANGE_SLOW_LOAD_LENGTH 40   // (mm) Slow length, to allow time to insert material.
+#define FILAMENT_CHANGE_SLOW_LOAD_LENGTH 50   // (mm) Slow length, to allow time to insert material.
                                              // 0 to disable start loading and skip to fast load only
 #define FILAMENT_CHANGE_FAST_LOAD_FEEDRATE 6 // (mm/s) Load filament feedrate. This can be pretty fast.
 #define FILAMENT_CHANGE_FAST_LOAD_ACCEL 25   // (mm/s^2) Lower acceleration may allow a faster feedrate.
-#define FILAMENT_CHANGE_FAST_LOAD_LENGTH 60   // (mm) Load length of filament, from extruder gear to nozzle.
+#define FILAMENT_CHANGE_FAST_LOAD_LENGTH 150   // (mm) Load length of filament, from extruder gear to nozzle.
                                              //   For Bowden, the full length of the tube and nozzle.
                                              //   For direct drive, the full length of the nozzle.
 //#define ADVANCED_PAUSE_CONTINUOUS_PURGE       // Purge continuously up to the purge length until interrupted.
 #define ADVANCED_PAUSE_PURGE_FEEDRATE 3 // (mm/s) Extrude feedrate (after loading). Should be slower than load feedrate.
-#define ADVANCED_PAUSE_PURGE_LENGTH 150  // (mm) Length to extrude after loading.
+#define ADVANCED_PAUSE_PURGE_LENGTH 100  // (mm) Length to extrude after loading.
                                         //   Set to 0 for manual extrusion.
                                         //   Filament can be extruded repeatedly from the Filament Change menu
                                         //   until extrusion is consistent, and to purge old filament.
@@ -2689,7 +2689,7 @@
 //#define ADVANCED_PAUSE_FANS_PAUSE             // Turn off print-cooling fans while the machine is paused.
 
 // Filament Unload does a Retract, Delay, and Purge first:
-#define FILAMENT_UNLOAD_PURGE_RETRACT 2  // (mm) Unload initial retract length.
+#define FILAMENT_UNLOAD_PURGE_RETRACT 3  // (mm) Unload initial retract length.
 #define FILAMENT_UNLOAD_PURGE_DELAY 0 // 5000  // (ms) Delay for the filament to cool after retract. Phoenix
 #define FILAMENT_UNLOAD_PURGE_LENGTH 8    // (mm) An unretract is done, then this length is purged.
 #define FILAMENT_UNLOAD_PURGE_FEEDRATE 25 // (mm/s) feedrate to purge before unload
@@ -2922,14 +2922,14 @@
 #if AXIS_IS_TMC(Z)
 #define Z_CURRENT 650
 #define Z_CURRENT_HOME Z_CURRENT
-#define Z_MICROSTEPS 16  // was 16 before, Change here too if screw advance changes, Phoenix pasos eje z // Funciona sin rallas con estos valores 16 y 650
+#define Z_MICROSTEPS 16  // was 16 before, Change here too if screw advance changes, Phoenix pasos eje z // Funciona sin rayas con estos valores 16 y 650
 #define Z_RSENSE 0.11
 #define Z_CHAIN_POS -1
 //#define Z_INTERPOLATE  true
 //#define Z_HOLD_MULTIPLIER 0.5
 #endif
 
-// Funciona sin rallas con estos valores 16 y 650
+// Funciona sin rayas con estos valores 16 y 650
 
 
 #if AXIS_IS_TMC(Z2)
@@ -3023,7 +3023,7 @@
 #endif
 
 #if AXIS_IS_TMC(E0)
-#define E0_CURRENT 450 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
+#define E0_CURRENT 500 // 500 mA Peak for Orbiter extruder (DETAIL @MK3|QUALITY @MK3).*/}M907 E430 ; (SPEED @MK3|DRAFT @MK3).*/}M907 E538 ; // set extruder motor current
 #define E0_MICROSTEPS 32 // Ojo, cambiado a 32 micro pasos en extrusora como lo hace Prusa 
 #define E0_RSENSE 0.11
 #define E0_CHAIN_POS -1
@@ -3031,7 +3031,7 @@
 //#define E0_HOLD_MULTIPLIER 0.5
 #endif
 
-// Funciona sin rallas con estos valores 32 y 450 en corriente
+// Funciona sin rayas con estos valores 32 y 450 en corriente
 
 #if AXIS_IS_TMC(E1)
 #define E1_CURRENT 800

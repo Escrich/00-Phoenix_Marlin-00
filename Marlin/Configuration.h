@@ -688,10 +688,10 @@
     114.00, 114.00      \
   }
 #else
-// Phoenix Autotune PID results real ones ------------- 20221202
-#define DEFAULT_Kp 21.7
-#define DEFAULT_Ki 1.41
-#define DEFAULT_Kd 83.4
+// Phoenix Autotune PID results real ones ------------- 20221205
+#define DEFAULT_Kp 23.5
+#define DEFAULT_Ki 1.56
+#define DEFAULT_Kd 89.0
 #endif
 #endif
 
@@ -1176,7 +1176,7 @@
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
-#define ENDSTOP_INTERRUPTS_FEATURE  // Cambiado 20221202 Phoenix // Funciona sin rallas con esto desactivado
+#define ENDSTOP_INTERRUPTS_FEATURE  // Cambiado 20221202 Phoenix // Funciona sin rayas con esto desactivado
 
 /**
  * Endstop Noise Threshold
@@ -1222,7 +1222,7 @@
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT            \
   {                                            \
-    100, 100, 400, 1240  \
+    100, 100, 400, 1311  \
   }
 // Cambiados valores calculados Phoenix, anteriores 80, 80, 1600, 95 // 79.82249512, 79.88339666, 1593.713222, 94.75
 // Valores para un husillo de docho milimetros de avance 16 micropasos
@@ -1234,8 +1234,13 @@
 // Nominal a 32 micropasos 1380, en estas condiciones:
 // 95% = 1311, 90 % = 1242, 87,5 % = 1207,5, 85 % = 1173
 // Cambio a sinfín paso de 2 mm en lugar de 8, pasan los pasos de 400 a 1600
+// Con 1247 pasos, en PETG, se aprecia falta de material, con 1311 tambien
+// Mejor valor 95% con 32 micropasos, (1311)
 // 
-// Funciona sin rallas con estos valores 100, 100, 400, 1240
+// Funciona sin rayas con estos valores 100, 100, 400, 1240
+//
+//  Longitud tubo de Nylon 70.10 mm., para extrusora Orbiter con hotend V6
+//
 
 /*
 Orbiter Extruder V1.5
@@ -1264,7 +1269,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 // Orbiter V1.5 Maximum speed: 3600 mm/min = 60 mm/sec
 //200, 200, 10, 50 
 
-// Funciona sin rallas con estos valores 300, 300, 8, 4  
+// Funciona sin rayas con estos valores 300, 300, 8, 4  
 
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
@@ -1287,7 +1292,7 @@ Motor current: 0.5A Peak or 0.35A RMS
   } // Valores en Hypothetic 1000, 1000, 100, 5000, Default 3000, 3000, 100, 600  
 
 //1000, 1000, 80, 400 antes de Nora
-// Funciona sin rallas con estos valores 500, 500, 100, 100  
+// Funciona sin rayas con estos valores 500, 500, 100, 100  
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1310,7 +1315,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #define DEFAULT_TRAVEL_ACCELERATION 1500  // X, Y, Z acceleration for travel (non printing) moves
 // all accelerations values on Anet were 1250
 
-// Funciona sin rallas con estos valores 500 , 500, 500
+// Funciona sin rayas con estos valores 500 , 500, 500
 
 /**
  * Default Jerk limits (mm/s)
@@ -1326,7 +1331,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #define DEFAULT_YJERK 8 // 8   // 10.0
 #define DEFAULT_ZJERK 0.3 // 0.4 // 0.3
 
-// Funciona sin rallas con estos valores 8,8,0.3
+// Funciona sin rayas con estos valores 8,8,0.3
 
 //#define DEFAULT_IJERK  0.3
 //#define DEFAULT_JJERK  0.3
@@ -1347,7 +1352,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #endif
 
 #define DEFAULT_EJERK 4 // 4.0 // May be used by Linear Advance, was 5
-// Funciona sin rallas con estos valores 4
+// Funciona sin rayas con estos valores 4
 
 /**
  * Junction Deviation Factor
@@ -1651,8 +1656,8 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define NOZZLE_TO_PROBE_OFFSET \
   {                            \
-    -15, -28, -1.505          \
-  } // Datos para BLTouch en phoenix 20221127
+    -15, -28, -1.705          \
+  } // Datos para BLTouch en phoenix 20221207
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -2281,7 +2286,7 @@ Motor current: 0.5A Peak or 0.35A RMS
     (50 * 60), (50 * 60), (8 * 60) \
   }
 
-  // Funciona sin rallas con estos valores (50 * 60), (50 * 60), (8 * 60)
+  // Funciona sin rayas con estos valores (50 * 60), (50 * 60), (8 * 60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
