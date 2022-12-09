@@ -1588,9 +1588,9 @@
 #define POWER_LOSS_PIN PC0       // Pin to detect power loss. Set to -1 to disable default pin on boards without module.
 #define POWER_LOSS_STATE HIGH    // HIGH // State of pin indicating power loss
 #define POWER_LOSS_PULLUP        // Set pullup / pulldown as appropriate for your sensor
-//#define POWER_LOSS_PULLDOWN
-#define POWER_LOSS_PURGE_LEN 20   // (mm) Length of filament to purge on resume
-#define POWER_LOSS_RETRACT_LEN 10 // (mm) Length of filament to retract on fail. Requires backup power.
+// #define POWER_LOSS_PULLDOWN
+#define POWER_LOSS_PURGE_LEN 20  // (mm) Length of filament to purge on resume
+#define POWER_LOSS_RETRACT_LEN 2 // 10 // (mm) Length of filament to retract on fail. Requires backup power.
 
 // Without a POWER_LOSS_PIN the following option helps reduce wear on the SD card,
 // especially with "vase mode" printing. Set too high and vases cannot be continued.
@@ -1750,6 +1750,7 @@
  * :[ 'LCD', 'ONBOARD', 'CUSTOM_CABLE' ]
  */
 #define SDCARD_CONNECTION ONBOARD // Necesario para Phoenix
+// #define SDCARD_CONNECTION LCD // Necesario para Phoenix
 
 // Enable if SD detect is rendered useless (e.g., by using an SD extender)
 // #define NO_SD_DETECT
@@ -1758,7 +1759,7 @@
  * Multiple volume support - EXPERIMENTAL.
  * Adds 'M21 Pm' / 'M21 S' / 'M21 U' to mount SD Card / USB Drive.
  */
-// #define MULTI_VOLUME
+#define MULTI_VOLUME // Cambiado para pruebas, por defecto desactivado Phoenix
 #if ENABLED(MULTI_VOLUME)
 #define VOLUME_SD_ONBOARD
 #define VOLUME_USB_FLASH_DRIVE
