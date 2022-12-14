@@ -871,7 +871,7 @@
  * *** IT IS HIGHLY RECOMMENDED TO LEAVE THIS OPTION ENABLED! ***
  */
 #define PREVENT_COLD_EXTRUSION
-#define EXTRUDE_MINTEMP 175
+#define EXTRUDE_MINTEMP 200
 
 /**
  * Prevent a single extrusion longer than EXTRUDE_MAXLENGTH.
@@ -1814,7 +1814,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 // Require minimum nozzle and/or bed temperature for probing
 #define PREHEAT_BEFORE_PROBING //  ----------- Ya activado, solo se desactiva para pruebas, Phoenix -----------------
 #if ENABLED(PREHEAT_BEFORE_PROBING)
-#define PROBING_NOZZLE_TEMP 190 // (°C) Only applies to E0 at this time
+#define PROBING_NOZZLE_TEMP 200 // (°C) Only applies to E0 at this time
 #define PROBING_BED_TEMP 60
 #endif
 
@@ -2576,7 +2576,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 // #define NOZZLE_CLEAN_NO_Y
 
 // Require a minimum hotend temperature for cleaning
-#define NOZZLE_CLEAN_MIN_TEMP 170
+#define NOZZLE_CLEAN_MIN_TEMP 200
 // #define NOZZLE_CLEAN_HEATUP       // Heat up the nozzle instead of skipping wipe
 
 // Explicit wipe G-code script applies to a G12 with no arguments.
