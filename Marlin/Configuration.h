@@ -1273,7 +1273,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_FEEDRATE \
   {                          \
-    350, 350, 12, 50         \
+    350, 350, 12, 120         \
   } // Ajustadas conforme a Hypothetic  ////////--------------- Atención 50% mas de velocidad en Phoenix-------- antes 200, 200, 12, 60 Orbiter ----------------
 // Orbiter V1.5 Maximum speed: 3600 mm/min = 60 mm/sec
 // 200, 200, 10, 50
@@ -1296,7 +1296,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  */
 #define DEFAULT_MAX_ACCELERATION \
   {                              \
-    1500, 1500, 100, 500         \
+    1500, 1500, 200, 5000         \
   } // Valores en Hypothetic 1000, 1000, 100, 5000, Default 3000, 3000, 100, 600
 
 // 1000, 1000, 80, 400 antes de Nora
@@ -1319,7 +1319,7 @@ Motor current: 0.5A Peak or 0.35A RMS
  *   M204 T    Travel Acceleration
  */
 #define DEFAULT_ACCELERATION 1500        // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION 500 // E acceleration for retracts Orbiter retract speed
+#define DEFAULT_RETRACT_ACCELERATION 1250 // E acceleration for retracts Orbiter retract speed
 #define DEFAULT_TRAVEL_ACCELERATION 1500 // X, Y, Z acceleration for travel (non printing) moves
 // all accelerations values on Anet were 1250
 
@@ -1337,7 +1337,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #if ENABLED(CLASSIC_JERK)
 #define DEFAULT_XJERK 8   // 8   // 10.0
 #define DEFAULT_YJERK 8   // 8   // 10.0
-#define DEFAULT_ZJERK 0.3 // 0.4 // 0.3
+#define DEFAULT_ZJERK 0.4 // 0.4 // 0.3
 
 // Funciona sin rayas con estos valores 8,8,0.3
 
@@ -1359,7 +1359,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 #endif
 #endif
 
-#define DEFAULT_EJERK 4 // 4.0 // May be used by Linear Advance, was 5
+#define DEFAULT_EJERK 5 // 4.0 // May be used by Linear Advance, was 5
 // Funciona sin rayas con estos valores 4
 
 /**
@@ -1696,7 +1696,7 @@ Motor current: 0.5A Peak or 0.35A RMS
 //    Datos para BLTouch en phoenix 20221207, Sule variar la altura dependiendo de otros ajustes o el desmontaje del hot end
 #define NOZZLE_TO_PROBE_OFFSET \
   {                            \
-    -15, -28, -1.705           \
+    -15, -28, -1.505           \
   }
 
 // Most probes should stay away from the edges of the bed, but
